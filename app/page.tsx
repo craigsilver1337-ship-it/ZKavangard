@@ -5,30 +5,35 @@ import { Hero } from '../components/Hero';
 import { CardSkeleton } from '../components/ui/Skeleton';
 
 // Dynamic imports for below-the-fold components (reduces first load from 140KB → 70KB)
-const Features = dynamic(() => import('../components/Features').then(mod => ({ default: mod.Features })), {
+const Features = dynamic(() => import('@/components/Features').then(mod => ({ default: mod.Features })), {
   loading: () => <div className="min-h-[400px]"><CardSkeleton /></div>,
 });
 
-const AgentShowcase = dynamic(() => import('../components/AgentShowcase').then(mod => ({ default: mod.AgentShowcase })), {
+const AgentShowcase = dynamic(() => import('@/components/AgentShowcase').then(mod => ({ default: mod.AgentShowcase })), {
   loading: () => <div className="min-h-[500px]"><CardSkeleton /></div>,
 });
 
-const CodeShowcase = dynamic(() => import('../components/ui/CodeShowcase').then(mod => ({ default: mod.CodeShowcase })), {
+const CodeShowcase = dynamic(() => import('@/components/ui/CodeShowcase').then(mod => ({ default: mod.CodeShowcase })), {
   loading: () => <div className="min-h-[500px]"><CardSkeleton /></div>,
 });
 
-const Stats = dynamic(() => import('../components/Stats').then(mod => ({ default: mod.Stats })));
+const ValueProposition = dynamic(() => import('@/components/ui/ValueProposition').then(mod => ({ default: mod.ValueProposition })), {
+  loading: () => <div className="min-h-[500px]"><CardSkeleton /></div>,
+});
 
-const LiveMetrics = dynamic(() => import('../components/LiveMetrics').then(mod => ({ default: mod.LiveMetrics })), {
+
+const Stats = dynamic(() => import('@/components/Stats').then(mod => ({ default: mod.Stats })));
+
+const LiveMetrics = dynamic(() => import('@/components/LiveMetrics').then(mod => ({ default: mod.LiveMetrics })), {
   loading: () => <div className="min-h-[400px] bg-black flex items-center justify-center text-white">Loading metrics...</div>,
   ssr: false, // Client-only animations
 });
 
-const HowItWorks = dynamic(() => import('../components/HowItWorks').then(mod => ({ default: mod.HowItWorks })), {
+const HowItWorks = dynamic(() => import('@/components/HowItWorks').then(mod => ({ default: mod.HowItWorks })), {
   loading: () => <div className="min-h-[400px]"><CardSkeleton /></div>,
 });
 
-const CTASection = dynamic(() => import('../components/CTASection').then(mod => ({ default: mod.CTASection })));
+const CTASection = dynamic(() => import('@/components/CTASection').then(mod => ({ default: mod.CTASection })));
 
 export default function Home() {
   return (
@@ -41,19 +46,16 @@ export default function Home() {
       {/* Code Transparency Section */}
       <CodeShowcase />
 
-      {/* Stats section - White, wider container */}
-      <section className="bg-black dark:bg-black px-5 py-20 lg:py-32 transition-colors duration-300">
-        <div className="max-w-[1120px] mx-auto">
-          <Stats />
-        </div>
-      </section>
+      {/* 3D Value Proposition Section */}
+      <ValueProposition />
 
-      {/* Features section - Light gray, standard width */}
-      <section className="bg-black dark:bg-black px-5 py-24 lg:py-40 transition-colors duration-300">
-        <div className="max-w-[1200px] mx-auto">
-          <Features />
-        </div>
-      </section>
+
+
+      {/* Real-time Performance Metrics */}
+      <Stats />
+
+      {/* Core Technology Features */}
+      <Features />
 
       {/* Live Metrics - Black background like MacBook Pro section */}
       <section className="bg-black dark:bg-black px-5 py-24 lg:py-40 transition-colors duration-300">

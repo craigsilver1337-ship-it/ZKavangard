@@ -587,9 +587,11 @@ export function CodeShowcase() {
             <div className="relative z-10 w-full max-w-[1240px] mx-auto px-4">
                 <div className="text-center mb-16">
                     <motion.h2
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="text-5xl md:text-7xl font-black text-blue-500 mb-6 tracking-tighter"
                     >
                         Code Transparency
@@ -597,8 +599,9 @@ export function CodeShowcase() {
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
+                        exit={{ opacity: 0, y: 20 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                        transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                         className="text-gray-400 max-w-2xl mx-auto text-xl font-medium"
                     >
                         Review the core ZK-STARK engine and autonomous agent architecture.
@@ -607,9 +610,11 @@ export function CodeShowcase() {
                 </div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                    initial={{ opacity: 0, y: 60, scale: 0.95 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true }}
+                    exit={{ opacity: 0, y: 60, scale: 0.95 }}
+                    viewport={{ once: false, amount: 0.1 }}
+                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     className="relative bg-[#0d0f14]/90 backdrop-blur-3xl rounded-2xl overflow-hidden shadow-[0_0_120px_rgba(0,0,0,0.9)] border border-white/5 flex flex-col h-[750px] group"
                 >
                     {/* Shadow Border Glow */}
@@ -753,6 +758,35 @@ export function CodeShowcase() {
                                 <span>Prettier</span>
                             </div>
                         </div>
+                    </div>
+
+                    {/* Floating Docs Mini-Nav */}
+                    <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50">
+                        <motion.div
+                            whileHover={{
+                                scale: 1.05,
+                                borderColor: "rgba(59, 130, 246, 0.5)",
+                                boxShadow: "0 20px 80px rgba(59, 130, 246, 0.2)"
+                            }}
+                            className="bg-black/60 backdrop-blur-3xl border border-blue-500/20 rounded-full py-4 px-10 flex items-center gap-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] group/nav transition-all duration-500"
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_15px_rgba(59,130,246,1)]" />
+                                <span className="text-[12px] font-black tracking-[0.3em] text-white/40 uppercase">Vanguard Docs Engine</span>
+                            </div>
+
+                            <div className="w-px h-6 bg-white/10" />
+
+                            <motion.a
+                                href="/docs"
+                                whileHover={{ y: -1 }}
+                                className="flex items-center gap-3 text-[14px] font-black tracking-[0.15em] text-white uppercase hover:text-blue-400 transition-colors"
+                            >
+                                <DocumentIcon className="w-5 h-5 text-blue-500" />
+                                Explore Documentation
+                                <ChevronRightIcon className="w-4 h-4 opacity-40 group-hover/nav:translate-x-2 transition-transform text-blue-500" />
+                            </motion.a>
+                        </motion.div>
                     </div>
                 </motion.div>
             </div>

@@ -7,6 +7,30 @@ import { motion } from 'framer-motion';
 import { HeroPricing } from './HeroPricing';
 
 export function Hero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
   return (
     <section className="relative overflow-hidden min-h-[90vh]">
       <div className="absolute inset-x-0 top-[-50%] h-[140%] z-0">
@@ -14,7 +38,14 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 w-full px-5 lg:px-8 pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 pointer-events-none">
-        <div className="max-w-[1280px] mx-auto pointer-events-auto">
+        <motion.div
+          className="max-w-[1280px] mx-auto pointer-events-auto"
+          initial="hidden"
+          whileInView="visible"
+          exit="hidden"
+          viewport={{ once: false, amount: 0.1 }}
+          variants={containerVariants}
+        >
 
           {/* Asymmetric layout - content left, visual right */}
           <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-16 items-center">
@@ -23,22 +54,24 @@ export function Hero() {
             <div className="max-w-[640px]">
               {/* Eyebrow - clean badge with emphasis */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
                 className="inline-flex items-center gap-3 mb-6 cursor-default"
               >
-                <span className="text-subheadline text-label-secondary font-medium">
+                <span className="text-subheadline text-label-secondary font-medium dark:text-gray-400">
                   Solana Mainnet
                 </span>
-                <div className="w-px h-3 bg-separator-opaque" />
+                <div className="w-px h-3 bg-separator-opaque dark:bg-white/20" />
                 <span className="text-subheadline font-semibold text-transparent bg-gradient-to-r from-ios-blue to-[#0066FF] bg-clip-text">
                   Quantum-Proof
                 </span>
               </motion.div>
 
               {/* Hero headline - responsive sizing */}
-              <h1 className="text-[32px] leading-[1.15] sm:text-[48px] sm:leading-[1.08] lg:text-[64px] xl:text-[80px] lg:leading-[1.05] font-bold text-label-primary dark:text-white tracking-[-0.02em] mb-4 sm:mb-6">
+              <motion.h1
+                variants={itemVariants}
+                className="text-[32px] leading-[1.15] sm:text-[48px] sm:leading-[1.08] lg:text-[64px] xl:text-[80px] lg:leading-[1.05] font-bold text-label-primary dark:text-white tracking-[-0.02em] mb-4 sm:mb-6"
+              >
                 The First ZK-AI
                 <br />
                 <span className="relative inline-block">
@@ -50,17 +83,23 @@ export function Hero() {
                     Agent Swarm on Solana.
                   </motion.span>
                   {/* Subtle glow under gradient text */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-ios-blue/20 to-transparent blur-2xl -z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-ios-blue/20 to-transparent blur-3xl -z-10" />
                 </span>
-              </h1>
+              </motion.h1>
 
               {/* Shorter subheadline - responsive */}
-              <p className="text-[17px] leading-relaxed sm:text-title-3 lg:text-title-2 text-label-secondary dark:text-gray-300 font-normal mb-8 sm:mb-10">
+              <motion.p
+                variants={itemVariants}
+                className="text-[17px] leading-relaxed sm:text-title-3 lg:text-title-2 text-label-secondary dark:text-gray-300 font-normal mb-8 sm:mb-10"
+              >
                 Dominate the trenches with military-grade privacy. Our autonomous agents snipe, hedge, and compound your gains on Pump.fun completely invisible to copy-traders and MEV bots.
-              </p>
+              </motion.p>
 
               {/* CTA - responsive button size */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-4">
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-4"
+              >
                 <Link
                   href="/dashboard"
                   className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 h-[52px] sm:h-[56px] bg-ios-blue text-white text-callout sm:text-headline font-semibold rounded-[14px] hover:opacity-90 active:scale-[0.96] transition-all duration-[200ms] ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_8px_30px_rgba(0,122,255,0.25)] w-full sm:w-auto"
@@ -75,7 +114,7 @@ export function Hero() {
                   <span>View Architecture</span>
                   <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
                 </a>
-              </div>
+              </motion.div>
             </div>
 
             {/* Right: Visual representation - Desktop only */}
@@ -85,6 +124,7 @@ export function Hero() {
 
                 {/* Primary card - Zero-Knowledge Security */}
                 <motion.div
+                  variants={itemVariants}
                   className="group relative overflow-hidden bg-white/30 dark:bg-slate-900/10 backdrop-blur-md rounded-[20px] p-7 border-2 border-black/5 dark:border-white/10"
                   animate={{
                     y: [0, -8, 0],
@@ -159,6 +199,7 @@ export function Hero() {
                 <div className="grid grid-cols-2 gap-4">
                   {/* Real-Time Data card */}
                   <motion.div
+                    variants={itemVariants}
                     className="bg-white/30 dark:bg-slate-900/10 backdrop-blur-md rounded-[18px] p-6 border-2 border-black/5 dark:border-white/10"
                     animate={{
                       borderColor: ['rgba(0, 122, 255, 0.2)', 'rgba(0, 122, 255, 0.6)'],
@@ -192,6 +233,7 @@ export function Hero() {
 
                   {/* AI Automation card */}
                   <motion.div
+                    variants={itemVariants}
                     className="bg-white/30 dark:bg-slate-900/10 backdrop-blur-md rounded-[18px] p-6 border-2 border-black/5 dark:border-white/10"
                     animate={{
                       borderColor: ['rgba(0, 122, 255, 0.2)', 'rgba(0, 122, 255, 0.6)'],
@@ -232,6 +274,7 @@ export function Hero() {
           <div className="lg:hidden mt-12 space-y-4">
             {/* Mobile Anti-MEV Privacy Card */}
             <motion.div
+              variants={itemVariants}
               className="bg-white/30 dark:bg-slate-900/10 backdrop-blur-md rounded-[20px] p-5 border-2 border-black/5 dark:border-white/10 relative overflow-hidden"
               animate={{
                 borderColor: ['rgba(0, 122, 255, 0.1)', 'rgba(0, 122, 255, 0.5)'],
@@ -300,6 +343,7 @@ export function Hero() {
 
             {/* Mobile Autonomous Alpha Card */}
             <motion.div
+              variants={itemVariants}
               className="bg-white/30 dark:bg-slate-900/10 backdrop-blur-md rounded-[16px] p-5 border-2 border-black/5 dark:border-white/10"
               animate={{
                 borderColor: ['rgba(0, 122, 255, 0.1)', 'rgba(0, 122, 255, 0.5)'],
@@ -337,6 +381,7 @@ export function Hero() {
 
             {/* Mobile Nanosecond Sniping Card */}
             <motion.div
+              variants={itemVariants}
               className="bg-white/30 dark:bg-slate-900/10 backdrop-blur-md rounded-[16px] p-5 border-2 border-black/5 dark:border-white/10"
               animate={{
                 borderColor: ['rgba(0, 122, 255, 0.1)', 'rgba(0, 122, 255, 0.5)'],
@@ -371,9 +416,8 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Pricing Plans */}
           <HeroPricing />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
