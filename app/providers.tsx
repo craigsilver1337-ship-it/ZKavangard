@@ -2,14 +2,14 @@
 
 import { ReactNode, useMemo } from 'react';
 import { WagmiProvider } from 'wagmi';
-import { CronosTestnet, CronosMainnet } from '../lib/chains';
+import { SolanaTestnet, SolanaMainnet } from '../lib/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RainbowKitProvider, darkTheme, getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { ThemeProvider as CustomThemeProvider } from '../contexts/ThemeContext';
 import { PositionsProvider } from '../contexts/PositionsContext';
 import '@rainbow-me/rainbowkit/styles.css';
 
-// Production-ready configuration for Cronos x402 Paytech Hackathon
+// Production-ready configuration for Solana x402
 // Trim to remove any accidental whitespace/newlines from env vars
 const projectId = (process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'YOUR_PROJECT_ID').trim();
 
@@ -18,7 +18,7 @@ const projectId = (process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'YOUR_PRO
 const config = getDefaultConfig({
   appName: 'ZkVanguard',
   projectId,
-  chains: [CronosTestnet, CronosMainnet],
+  chains: [SolanaMainnet, SolanaTestnet],
   ssr: true,
 });
 

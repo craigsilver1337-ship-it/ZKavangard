@@ -13,6 +13,10 @@ const AgentShowcase = dynamic(() => import('../components/AgentShowcase').then(m
   loading: () => <div className="min-h-[500px]"><CardSkeleton /></div>,
 });
 
+const CodeShowcase = dynamic(() => import('../components/ui/CodeShowcase').then(mod => ({ default: mod.CodeShowcase })), {
+  loading: () => <div className="min-h-[500px]"><CardSkeleton /></div>,
+});
+
 const Stats = dynamic(() => import('../components/Stats').then(mod => ({ default: mod.Stats })));
 
 const LiveMetrics = dynamic(() => import('../components/LiveMetrics').then(mod => ({ default: mod.LiveMetrics })), {
@@ -30,40 +34,43 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero - Apple light blue background */}
-      <div className="bg-[#d2e9f5]">
+      <div className="bg-black dark:bg-black transition-colors duration-300">
         <Hero />
       </div>
-      
+
+      {/* Code Transparency Section */}
+      <CodeShowcase />
+
       {/* Stats section - White, wider container */}
-      <section className="bg-white px-5 py-20 lg:py-32">
+      <section className="bg-black dark:bg-black px-5 py-20 lg:py-32 transition-colors duration-300">
         <div className="max-w-[1120px] mx-auto">
           <Stats />
         </div>
       </section>
 
       {/* Features section - Light gray, standard width */}
-      <section className="bg-[#f5f5f7] px-5 py-24 lg:py-40">
+      <section className="bg-black dark:bg-black px-5 py-24 lg:py-40 transition-colors duration-300">
         <div className="max-w-[1200px] mx-auto">
           <Features />
         </div>
       </section>
 
       {/* Live Metrics - Black background like MacBook Pro section */}
-      <section className="bg-black px-5 py-24 lg:py-40">
+      <section className="bg-black dark:bg-black px-5 py-24 lg:py-40 transition-colors duration-300">
         <div className="max-w-[1120px] mx-auto">
           <LiveMetrics />
         </div>
       </section>
 
       {/* Agent Showcase - White, narrower */}
-      <section className="bg-white px-5 py-20 lg:py-32">
+      <section className="bg-black dark:bg-black px-5 py-20 lg:py-32 transition-colors duration-300">
         <div className="max-w-[840px] mx-auto">
           <AgentShowcase />
         </div>
       </section>
 
       {/* How It Works - Light gray */}
-      <section className="px-5 py-16 lg:py-24 bg-[#f5f5f7]">
+      <section className="px-5 py-16 lg:py-24 bg-black dark:bg-black transition-colors duration-300">
         <div className="max-w-[980px] mx-auto">
           <HowItWorks />
         </div>

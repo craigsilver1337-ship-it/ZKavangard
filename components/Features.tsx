@@ -35,10 +35,10 @@ const features = [
 
 export function Features() {
   const backgrounds = [
-    'bg-white',
-    'bg-[#f5f5f7]',
-    'bg-[#f5f5f7]',
-    'bg-white',
+    'bg-white dark:bg-slate-800',
+    'bg-[#f5f5f7] dark:bg-slate-800/50',
+    'bg-[#f5f5f7] dark:bg-slate-800/50',
+    'bg-white dark:bg-slate-800',
   ];
 
   return (
@@ -48,12 +48,12 @@ export function Features() {
         {features.map((feature, index) => {
           const Icon = feature.icon;
           return (
-            <div key={index} className={`${backgrounds[index]} rounded-[20px] p-10`}>
+            <div key={index} className={`${backgrounds[index]} rounded-[20px] p-10 shadow-[0_1px_3px_rgba(0,0,0,0.08)] dark:shadow-none`}>
               <Icon className={`w-9 h-9 ${feature.iconColor} mb-4`} strokeWidth={1.5} />
-              <h2 className="text-[36px] font-semibold text-[#1d1d1f] tracking-[-0.025em] leading-[1.08] mb-3">
+              <h2 className="text-[36px] font-semibold text-[#1d1d1f] dark:text-white tracking-[-0.025em] leading-[1.08] mb-3">
                 {feature.title}
               </h2>
-              <p className="text-[19px] font-normal text-[#86868b] leading-[1.47] tracking-[-0.003em]">
+              <p className="text-[19px] font-normal text-[#86868b] dark:text-gray-400 leading-[1.47] tracking-[-0.003em]">
                 {feature.description}
               </p>
             </div>
@@ -66,12 +66,12 @@ export function Features() {
         {features.map((feature, index) => {
           const Icon = feature.icon;
           return (
-            <div key={index} className={`${backgrounds[index]} rounded-[24px] p-14`}>
+            <div key={index} className={`${backgrounds[index]} rounded-[24px] p-14 shadow-[0_1px_3px_rgba(0,0,0,0.08)] dark:shadow-none`}>
               <Icon className={`w-11 h-11 ${feature.iconColor} mb-5`} strokeWidth={1.5} />
-              <h2 className="text-[48px] font-semibold text-[#1d1d1f] tracking-[-0.025em] leading-[1.08] mb-4">
+              <h2 className="text-[48px] font-semibold text-[#1d1d1f] dark:text-white tracking-[-0.025em] leading-[1.08] mb-4">
                 {feature.title}
               </h2>
-              <p className="text-[21px] font-normal text-[#86868b] leading-[1.47] tracking-[-0.003em] max-w-[460px]">
+              <p className="text-[21px] font-normal text-[#86868b] dark:text-gray-400 leading-[1.47] tracking-[-0.003em] max-w-[460px]">
                 {feature.description}
               </p>
             </div>

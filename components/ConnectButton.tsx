@@ -2,6 +2,7 @@
 
 import { ConnectButton as RainbowConnectButton } from '@rainbow-me/rainbowkit';
 import { Wallet } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function ConnectButton() {
   return (
@@ -37,14 +38,16 @@ export function ConnectButton() {
             {(() => {
               if (!connected) {
                 return (
-                  <button
+                  <motion.button
                     onClick={openConnectModal}
                     type="button"
-                    className="px-5 h-11 bg-[#007AFF] hover:opacity-90 active:opacity-80 text-white rounded-[12px] font-semibold text-[16px] transition-opacity flex items-center gap-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+                    className="px-5 h-11 bg-[#007AFF] text-white rounded-[12px] font-semibold text-[16px] flex items-center gap-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+                    whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,122,255,0.4)" }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <Wallet className="w-4 h-4" />
                     <span>Connect</span>
-                  </button>
+                  </motion.button>
                 );
               }
 
@@ -62,10 +65,12 @@ export function ConnectButton() {
 
               return (
                 <div className="flex items-center gap-2">
-                  <button
+                  <motion.button
                     onClick={openChainModal}
                     type="button"
-                    className="px-3 h-11 bg-[#f5f5f7] hover:bg-[#e5e5ea] border border-black/10 rounded-[12px] transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.04)] hidden sm:flex items-center gap-2"
+                    className="px-3 h-11 bg-[#f5f5f7] dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-[12px] hidden sm:flex items-center gap-2"
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     {chain.hasIcon && (
                       <div
@@ -86,21 +91,23 @@ export function ConnectButton() {
                         )}
                       </div>
                     )}
-                    <span className="text-[16px] font-medium text-[#1d1d1f]">
+                    <span className="text-[16px] font-medium text-[#1d1d1f] dark:text-white">
                       {chain.name}
                     </span>
-                  </button>
+                  </motion.button>
 
-                  <button
+                  <motion.button
                     onClick={openAccountModal}
                     type="button"
-                    className="px-4 h-11 bg-[#f5f5f7] hover:bg-[#e5e5ea] border border-black/10 rounded-[12px] transition-colors flex items-center gap-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+                    className="px-4 h-11 bg-[#f5f5f7] dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-[12px] flex items-center gap-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <Wallet className="w-4 h-4 text-[#007AFF]" />
-                    <span className="text-[#1d1d1f] font-medium text-[16px]">
+                    <Wallet className="w-4 h-4 text-[#007AFF] dark:text-[#0A84FF]" />
+                    <span className="text-[#1d1d1f] dark:text-white font-medium text-[16px]">
                       {account.displayName}
                     </span>
-                  </button>
+                  </motion.button>
                 </div>
               );
             })()}

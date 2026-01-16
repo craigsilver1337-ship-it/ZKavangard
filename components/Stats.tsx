@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react';
 
 const stats = [
-  { label: 'AI Agents', value: '5', prefix: '' },
-  { label: 'Gas Savings', value: '100%', prefix: '' },
-  { label: 'ZK Proofs', value: '2K+', prefix: '' },
-  { label: 'Response Time', value: '<1s', prefix: '' },
+  { label: 'Active Agents', value: '5', prefix: '' },
+  { label: 'Slippage Leakage', value: '0%', prefix: '' },
+  { label: 'Protected Txs', value: '2K+', prefix: '' },
+  { label: 'Execution Speed', value: '<400ms', prefix: '' },
 ];
 
 export function Stats() {
@@ -23,9 +23,8 @@ export function Stats() {
         {stats.map((stat, index) => (
           <div
             key={index}
-            className={`text-center transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+            className={`text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
             style={{ transitionDelay: `${index * 80}ms` }}
           >
             <div className="text-[72px] font-semibold text-[#1d1d1f] tracking-[-0.06em] leading-none mb-2">
@@ -41,16 +40,15 @@ export function Stats() {
         {/* Hero stat - 100% */}
         <div className="text-center mb-32">
           <div
-            className={`transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+            className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
             style={{ transitionDelay: '80ms' }}
           >
             <div className="text-[180px] font-semibold text-[#1d1d1f] tracking-[-0.08em] leading-none mb-4">
               {stats[1].value}
             </div>
             <div className="text-[32px] font-semibold text-[#1d1d1f] mb-2">{stats[1].label}</div>
-            <div className="text-[17px] text-[#86868b]">x402 batching on Cronos zkEVM</div>
+            <div className="text-[17px] text-[#86868b]">via ZK-Aggregated Settlement</div>
           </div>
         </div>
 
@@ -59,9 +57,8 @@ export function Stats() {
           {[stats[0], stats[2], stats[3]].map((stat, index) => (
             <div
               key={index}
-              className={`text-center transition-all duration-700 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
+              className={`text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
               style={{ transitionDelay: `${(index + 2) * 80}ms` }}
             >
               <div className="text-[80px] font-semibold text-[#1d1d1f] tracking-[-0.06em] leading-none mb-3">

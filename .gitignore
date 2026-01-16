@@ -135,3 +135,5 @@ Investors/*.mp4
 # Bun cache
 ~/
 .bun/
+
+*.mov

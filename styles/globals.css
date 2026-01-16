@@ -9,32 +9,32 @@
   --background-secondary: #F5F5F7;
   --background-tertiary: #FAFAFA;
   --background-grouped: #F2F2F7;
-  
+
   /* Text Colors - Enhanced Contrast */
   --label-primary: #1D1D1F;
   --label-secondary: #424245;
   --label-tertiary: #6E6E73;
   --label-quaternary: #86868B;
-  
+
   /* System Colors */
   --color-blue: #007AFF;
   --color-green: #34C759;
   --color-orange: #FF9500;
   --color-red: #FF3B30;
   --color-gray: #8E8E93;
-  
+
   /* Separator Colors */
   --separator-opaque: #C6C6C8;
   --separator-non-opaque: rgba(60, 60, 67, 0.36);
-  
+
   /* Borders */
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-medium: rgba(0, 0, 0, 0.18);
-  
+
   /* Card backgrounds with better contrast */
   --card-bg: #FFFFFF;
   --card-bg-hover: #FAFAFA;
-  
+
   /* Apple Spacing Scale */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
@@ -45,7 +45,7 @@
   --spacing-3xl: 48px;
   --spacing-4xl: 64px;
   --spacing-5xl: 80px;
-  
+
   /* Apple Typography Scale */
   --font-size-display: 64px;
   --font-size-title-1: 34px;
@@ -58,18 +58,18 @@
   --font-size-footnote: 13px;
   --font-size-caption-1: 12px;
   --font-size-caption-2: 11px;
-  
+
   /* Apple Letter Spacing */
   --letter-spacing-display: -0.02em;
   --letter-spacing-title: -0.01em;
   --letter-spacing-body: 0;
-  
+
   /* Apple Shadows */
   --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.03);
   --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.12);
-  
+
   /* Apple Border Radius */
   --radius-sm: 12px;
   --radius-md: 16px;
@@ -78,32 +78,41 @@
 }
 
 .dark {
-  /* Dark mode overrides */
-  --background-primary: #000000;
-  --background-secondary: #1C1C1E;
-  --background-tertiary: #2C2C2E;
-  --background-grouped: #000000;
-  
+  /* Dark mode overrides - Slate Theme */
+  --background-primary: #0f172a;
+  /* Slate 900 */
+  --background-secondary: #1e293b;
+  /* Slate 800 */
+  --background-tertiary: #334155;
+  /* Slate 700 */
+  --background-grouped: #0f172a;
+
   /* Enhanced dark mode text contrast */
-  --label-primary: #FFFFFF;
-  --label-secondary: #EBEBF0;
-  --label-tertiary: #AEAEB2;
-  --label-quaternary: #8E8E93;
-  
-  --separator-opaque: #48484A;
-  --separator-non-opaque: rgba(84, 84, 88, 0.65);
-  
+  --label-primary: #f1f5f9;
+  /* Slate 100 */
+  --label-secondary: #cbd5e1;
+  /* Slate 300 */
+  --label-tertiary: #94a3b8;
+  /* Slate 400 */
+  --label-quaternary: #64748b;
+  /* Slate 500 */
+
+  --separator-opaque: #475569;
+  --separator-non-opaque: rgba(148, 163, 184, 0.2);
+
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-medium: rgba(255, 255, 255, 0.18);
-  
-  --card-bg: #1C1C1E;
-  --card-bg-hover: #2C2C2E;
-  
+
+  --card-bg: #1e293b;
+  /* Slate 800 */
+  --card-bg-hover: #334155;
+  /* Slate 700 */
+
   /* Dark mode shadows */
-  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -130,12 +139,19 @@ body {
 }
 
 /* Ensure text is always readable */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--label-primary);
   font-weight: 600;
 }
 
-p, span, div {
+p,
+span,
+div {
   color: var(--label-primary);
 }
 
@@ -154,6 +170,7 @@ p, span, div {
 /* Remove all decorative background effects */
 
 @layer utilities {
+
   /* Apple Typography Classes */
   .text-display {
     font-size: var(--font-size-display);
@@ -161,77 +178,77 @@ p, span, div {
     letter-spacing: var(--letter-spacing-display);
     line-height: 1.05;
   }
-  
+
   .text-title-1 {
     font-size: var(--font-size-title-1);
     font-weight: 600;
     letter-spacing: var(--letter-spacing-title);
     line-height: 1.15;
   }
-  
+
   .text-title-2 {
     font-size: var(--font-size-title-2);
     font-weight: 600;
     letter-spacing: var(--letter-spacing-title);
     line-height: 1.2;
   }
-  
+
   .text-title-3 {
     font-size: var(--font-size-title-3);
     font-weight: 600;
     letter-spacing: var(--letter-spacing-body);
     line-height: 1.25;
   }
-  
+
   .text-headline {
     font-size: var(--font-size-headline);
     font-weight: 600;
     letter-spacing: var(--letter-spacing-body);
     line-height: 1.3;
   }
-  
+
   .text-body {
     font-size: var(--font-size-body);
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
     line-height: 1.4;
   }
-  
+
   .text-callout {
     font-size: var(--font-size-callout);
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
     line-height: 1.35;
   }
-  
+
   .text-subhead {
     font-size: var(--font-size-subhead);
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
     line-height: 1.35;
   }
-  
+
   .text-footnote {
     font-size: var(--font-size-footnote);
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
     line-height: 1.4;
   }
-  
+
   .text-caption-1 {
     font-size: var(--font-size-caption-1);
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
     line-height: 1.35;
   }
-  
+
   .text-caption-2 {
     font-size: var(--font-size-caption-2);
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
     line-height: 1.35;
   }
-  
+
   /* Apple Card Styles */
   .apple-card {
     background: var(--card-bg);
@@ -241,13 +258,13 @@ p, span, div {
     box-shadow: var(--shadow-md);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .apple-card:hover {
     background: var(--card-bg-hover);
     box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
   }
-  
+
   .apple-card-compact {
     background: var(--card-bg);
     border: 1px solid var(--border-subtle);
@@ -256,7 +273,7 @@ p, span, div {
     box-shadow: var(--shadow-sm);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .apple-card-compact:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-1px);
@@ -273,17 +290,17 @@ p, span, div {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 
+    box-shadow:
       0 4px 24px rgba(0, 0, 0, 0.08),
       0 2px 8px rgba(0, 0, 0, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 0.8);
     color: #1D1D1F;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .glass-light:hover {
     background: rgba(255, 255, 255, 0.98);
-    box-shadow: 
+    box-shadow:
       0 8px 32px rgba(0, 0, 0, 0.12),
       0 4px 16px rgba(0, 0, 0, 0.06),
       inset 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -294,16 +311,16 @@ p, span, div {
   .card-yang {
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.12);
-    box-shadow: 
+    box-shadow:
       0 4px 12px rgba(0, 0, 0, 0.08),
       0 1px 4px rgba(0, 0, 0, 0.04);
     color: #1D1D1F;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .card-yang:hover {
     background: #FAFAFA;
-    box-shadow: 
+    box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.12),
       0 2px 8px rgba(0, 0, 0, 0.06);
     transform: translateY(-2px);
@@ -314,14 +331,14 @@ p, span, div {
     background: rgba(28, 28, 30, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #FFFFFF;
-    box-shadow: 
+    box-shadow:
       0 4px 24px rgba(0, 0, 0, 0.4),
       0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   .dark .glass-light:hover {
     background: rgba(44, 44, 46, 0.98);
-    box-shadow: 
+    box-shadow:
       0 8px 32px rgba(0, 0, 0, 0.5),
       0 4px 16px rgba(0, 0, 0, 0.3);
   }
@@ -330,14 +347,14 @@ p, span, div {
     background: #1C1C1E;
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #FFFFFF;
-    box-shadow: 
+    box-shadow:
       0 4px 12px rgba(0, 0, 0, 0.4),
       0 1px 4px rgba(0, 0, 0, 0.2);
   }
 
   .dark .card-yang:hover {
     background: #2C2C2E;
-    box-shadow: 
+    box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.5),
       0 2px 8px rgba(0, 0, 0, 0.3);
   }
@@ -345,11 +362,11 @@ p, span, div {
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .parallax-slow {
     transform: translateZ(-1px) scale(2);
   }
-  
+
   .parallax-fast {
     transform: translateZ(-2px) scale(3);
   }
@@ -408,9 +425,12 @@ p, span, div {
 
 /* Animated gradient backgrounds */
 @keyframes gradientShift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -423,9 +443,12 @@ p, span, div {
 
 /* Pulse glow animation */
 @keyframes pulseGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(79, 70, 229, 0.6), 0 0 60px rgba(16, 185, 129, 0.3);
   }
@@ -440,9 +463,12 @@ p, span, div {
 }
 
 @keyframes pulseGlowSecondary {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(16, 185, 129, 0.6), 0 0 60px rgba(79, 70, 229, 0.3);
   }
@@ -453,18 +479,17 @@ p, span, div {
   0% {
     background-position: -1000px 0;
   }
+
   100% {
     background-position: 1000px 0;
   }
 }
 
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%);
   background-size: 1000px 100%;
   animation: shimmer 3s infinite;
 }
@@ -475,6 +500,7 @@ p, span, div {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -486,6 +512,7 @@ p, span, div {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -497,6 +524,7 @@ p, span, div {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -508,6 +536,7 @@ p, span, div {
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -536,6 +565,7 @@ p, span, div {
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -621,7 +651,7 @@ p, span, div {
 
 /* Grid pattern */
 .grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(var(--border-light) 1px, transparent 1px),
     linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -739,9 +769,12 @@ p, span, div {
 
 /* Pulse animation */
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -753,10 +786,82 @@ p, span, div {
 
 /* Hide scrollbar but keep functionality (Apple style) */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari and Opera */
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

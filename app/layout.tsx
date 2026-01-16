@@ -36,24 +36,19 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://api.crypto.com" />
         <link rel="preconnect" href="https://testnet.cronos.org" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://testnet.cronos.org" />
-        
+
         {/* Preload critical fonts (system fonts, no external fonts needed) */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           /* Critical inline CSS for instant render */
           * { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
           body { margin: 0; background: #fff; }
           @keyframes shimmer { 0% { background-position: -1000px 0; } 100% { background-position: 1000px 0; } }
         `}} />
-        
+
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              // Support light mode by default
-              document.documentElement.style.backgroundColor = '#FFFFFF';
-              if (document.body) {
-                document.body.style.backgroundColor = '#F2F2F7';
-              }
-              
               (function() {
                 // Aggressively block WalletConnect Cloud API calls
                 const blockedDomains = ['api.web3modal.org', 'pulse.walletconnect.org', 'explorer-api.walletconnect.com'];
@@ -97,11 +92,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white text-label-primary">
+      <body className="transition-colors duration-300">
         <Providers>
           <div className="flex flex-col min-h-screen">
             <Navbar />
-            <main className="flex-grow pt-[52px]">
+            <main className="flex-grow">
               {children}
             </main>
             <Footer />

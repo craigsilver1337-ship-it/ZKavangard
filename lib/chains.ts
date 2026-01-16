@@ -1,60 +1,57 @@
 import { defineChain } from 'viem';
 
 // ============================================
-// CRONOS CHAINS (EVM-Compatible)
+// SOLANA (Represented as a chain config for UI)
 // ============================================
 
-// Cronos EVM Mainnet (Required for Cronos x402 Paytech Hackathon)
-export const CronosMainnet = defineChain({
-  id: 25,
-  name: 'Cronos',
+export const SolanaMainnet = defineChain({
+  id: 1399811149, // Dummy ID for Solana representation in EVM-like UI
+  name: 'Solana Mainnet',
   nativeCurrency: {
-    decimals: 18,
-    name: 'Cronos',
-    symbol: 'CRO',
+    decimals: 9,
+    name: 'Solana',
+    symbol: 'SOL',
   },
   rpcUrls: {
     default: {
-      http: ['https://evm.cronos.org'],
+      http: ['https://api.mainnet-beta.solana.com'],
     },
   },
   blockExplorers: {
     default: {
-      name: 'Cronoscan',
-      url: 'https://explorer.cronos.org',
+      name: 'Solscan',
+      url: 'https://solscan.io',
     },
   },
   testnet: false,
 });
 
-// Cronos EVM Testnet (For Development & Testing)
-export const CronosTestnet = defineChain({
-  id: 338,
-  name: 'Cronos Testnet',
+export const SolanaTestnet = defineChain({
+  id: 1399811150,
+  name: 'Solana Testnet',
   nativeCurrency: {
-    decimals: 18,
-    name: 'Test Cronos',
-    symbol: 'tCRO',
+    decimals: 9,
+    name: 'Solana',
+    symbol: 'SOL',
   },
   rpcUrls: {
     default: {
-      http: ['https://evm-t3.cronos.org'],
+      http: ['https://api.testnet.solana.com'],
     },
   },
   blockExplorers: {
     default: {
-      name: 'Cronos Testnet Explorer',
-      url: 'https://explorer.cronos.org/testnet',
+      name: 'Solana Explorer',
+      url: 'https://explorer.solana.com/?cluster=testnet',
     },
   },
   testnet: true,
 });
 
 // ============================================
-// SUI CHAINS (Move-based, Non-EVM)
+// SUI CHAINS (Move-based)
 // ============================================
 
-// SUI Mainnet Configuration (for wallet display & reference)
 export const SuiMainnet = {
   id: 'sui:mainnet',
   name: 'SUI',
@@ -77,7 +74,6 @@ export const SuiMainnet = {
   testnet: false,
 };
 
-// SUI Testnet Configuration (For Development & Testing)
 export const SuiTestnet = {
   id: 'sui:testnet',
   name: 'SUI Testnet',
@@ -100,29 +96,6 @@ export const SuiTestnet = {
   testnet: true,
 };
 
-// SUI Devnet Configuration (For early development)
-export const SuiDevnet = {
-  id: 'sui:devnet',
-  name: 'SUI Devnet',
-  nativeCurrency: {
-    decimals: 9,
-    name: 'SUI',
-    symbol: 'SUI',
-  },
-  rpcUrls: {
-    default: {
-      http: ['https://fullnode.devnet.sui.io:443'],
-    },
-  },
-  blockExplorers: {
-    default: {
-      name: 'Sui Devnet Explorer',
-      url: 'https://suiexplorer.com/?network=devnet',
-    },
-  },
-  testnet: true,
-};
-
 // ============================================
 // MULTI-CHAIN UTILITIES
 // ============================================
@@ -134,20 +107,19 @@ export interface MultiChainConfig {
   name: string;
   logo: string;
   chains: {
-    mainnet: typeof CronosMainnet | typeof SuiMainnet;
-    testnet: typeof CronosTestnet | typeof SuiTestnet;
+    mainnet: any;
+    testnet: any;
   };
 }
 
-// Supported chains for the platform
 export const SUPPORTED_CHAINS: MultiChainConfig[] = [
   {
     type: 'evm',
-    name: 'Cronos',
-    logo: '/chains/cronos.svg',
+    name: 'Solana Mainnet',
+    logo: '/chains/solana.svg',
     chains: {
-      mainnet: CronosMainnet,
-      testnet: CronosTestnet,
+      mainnet: SolanaMainnet,
+      testnet: SolanaTestnet,
     },
   },
   {
@@ -161,15 +133,10 @@ export const SUPPORTED_CHAINS: MultiChainConfig[] = [
   },
 ];
 
-// Helper to check if a chain is EVM-compatible
 export function isEVMChain(chainId: number | string): boolean {
-  if (typeof chainId === 'number') {
-    return chainId === 25 || chainId === 338;
-  }
-  return !chainId.startsWith('sui:');
+  return typeof chainId === 'number';
 }
 
-// Helper to check if a chain is SUI
 export function isSUIChain(chainId: number | string): boolean {
   if (typeof chainId === 'string') {
     return chainId.startsWith('sui:');
@@ -177,7 +144,6 @@ export function isSUIChain(chainId: number | string): boolean {
   return false;
 }
 
-// Get chain type from ID
 export function getChainType(chainId: number | string): ChainType {
   return isSUIChain(chainId) ? 'sui' : 'evm';
 }

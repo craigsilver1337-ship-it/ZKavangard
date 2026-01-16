@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { SUPPORTED_CHAINS, ChainType } from '../lib/chains';
 
 interface ChainSelectorProps {
@@ -23,14 +24,16 @@ export function ChainSelector({ onChainChange, className = '' }: ChainSelectorPr
   return (
     <div className={`relative ${className}`}>
       {/* Current Chain Button */}
-      <button
+      <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 bg-[#F5F5F7] border border-[#E5E5EA] rounded-xl hover:bg-[#E5E5EA] transition-all duration-200"
+        className="flex items-center gap-2 px-3 py-2 bg-[#F5F5F7] dark:bg-white/10 border border-[#E5E5EA] dark:border-white/10 rounded-xl transition-all duration-200"
+        whileHover={{ scale: 1.05, backgroundColor: "rgba(0,122,255,0.1)", borderColor: "rgba(0,122,255,0.3)" }}
+        whileTap={{ scale: 0.95 }}
       >
-        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#007AFF] to-[#5856D6] flex items-center justify-center text-white text-xs font-bold">
+        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#007AFF] to-[#5856D6] flex items-center justify-center text-white text-xs font-bold shadow-sm">
           {currentChain?.name.charAt(0)}
         </div>
-        <span className="text-[#1D1D1F] font-medium text-sm">{currentChain?.name}</span>
+        <span className="text-[#1D1D1F] dark:text-white font-medium text-sm">{currentChain?.name}</span>
         <svg
           className={`w-4 h-4 text-[#86868B] transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
@@ -39,7 +42,7 @@ export function ChainSelector({ onChainChange, className = '' }: ChainSelectorPr
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
-      </button>
+      </motion.button>
 
       {/* Dropdown */}
       {isOpen && (
@@ -47,29 +50,27 @@ export function ChainSelector({ onChainChange, className = '' }: ChainSelectorPr
           <div className="p-3 border-b border-[#E5E5EA]">
             <h4 className="text-[#86868B] text-xs font-medium uppercase tracking-wider">Select Network</h4>
           </div>
-          
+
           <div className="p-2">
             {SUPPORTED_CHAINS.map((chain) => (
               <button
                 key={chain.type}
                 onClick={() => handleChainSelect(chain.type, chain.name)}
-                className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${
-                  selectedChain === chain.type
-                    ? 'bg-[#007AFF]/10 border border-[#007AFF]/50'
-                    : 'hover:bg-[#F5F5F7]'
-                }`}
+                className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 ${selectedChain === chain.type
+                  ? 'bg-[#007AFF]/10 border border-[#007AFF]/50'
+                  : 'hover:bg-[#F5F5F7]'
+                  }`}
               >
                 {/* Chain Icon */}
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                  chain.type === 'evm' 
-                    ? 'bg-gradient-to-r from-[#007AFF] to-[#5856D6]' 
-                    : 'bg-gradient-to-r from-[#32ADE6] to-[#007AFF]'
-                }`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${chain.type === 'evm'
+                  ? 'bg-gradient-to-r from-[#007AFF] to-[#5856D6]'
+                  : 'bg-gradient-to-r from-[#32ADE6] to-[#007AFF]'
+                  }`}>
                   {chain.type === 'evm' ? (
-                    <span className="text-white font-bold text-sm">CRO</span>
+                    <span className="text-white font-bold text-sm">SOL</span>
                   ) : (
                     <svg viewBox="0 0 32 32" className="w-6 h-6 text-white" fill="currentColor">
-                      <path d="M16 2L4 9.5v13L16 30l12-7.5v-13L16 2zm0 3.5l8 5v10l-8 5-8-5v-10l8-5z"/>
+                      <path d="M16 2L4 9.5v13L16 30l12-7.5v-13L16 2zm0 3.5l8 5v10l-8 5-8-5v-10l8-5z" />
                     </svg>
                   )}
                 </div>
@@ -78,16 +79,15 @@ export function ChainSelector({ onChainChange, className = '' }: ChainSelectorPr
                 <div className="flex-1 text-left">
                   <div className="text-[#1D1D1F] font-semibold">{chain.name}</div>
                   <div className="text-[#86868B] text-xs">
-                    {chain.type === 'evm' ? 'EVM Compatible • x402 Gasless' : 'Move-based • Sponsored Tx'}
+                    {chain.type === 'evm' ? 'Solana Mainnet • Low Latency' : 'Move-based • Advanced ZK'}
                   </div>
                 </div>
 
                 {/* Status Badge */}
-                <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  chain.type === 'evm'
-                    ? 'bg-[#34C759]/10 text-[#34C759]'
-                    : 'bg-[#32ADE6]/10 text-[#32ADE6]'
-                }`}>
+                <div className={`px-2 py-1 rounded-full text-xs font-medium ${chain.type === 'evm'
+                  ? 'bg-[#34C759]/10 text-[#34C759]'
+                  : 'bg-[#32ADE6]/10 text-[#32ADE6]'
+                  }`}>
                   {chain.type === 'evm' ? 'Live' : 'Ready'}
                 </div>
 
@@ -115,8 +115,8 @@ export function ChainSelector({ onChainChange, className = '' }: ChainSelectorPr
 
       {/* Click outside to close */}
       {isOpen && (
-        <div 
-          className="fixed inset-0 z-40" 
+        <div
+          className="fixed inset-0 z-40"
           onClick={() => setIsOpen(false)}
         />
       )}
