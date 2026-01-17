@@ -185,7 +185,7 @@ const PerspectiveCard = ({ title, subtitle, icon, items, ctaText, gradient, glow
                 className="absolute inset-[-60px] rounded-[60px] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
             />
 
-            <div className="relative h-full w-full rounded-3xl bg-[#050505]/95 backdrop-blur-xl border border-white/5 overflow-hidden flex flex-col p-10 transition-all duration-500 group-hover:border-white/20 shadow-2xl">
+            <div className="relative h-full w-full rounded-3xl bg-black/80 backdrop-blur-[50px] border border-white/5 overflow-hidden flex flex-col p-10 transition-all duration-500 group-hover:border-white/20 shadow-2xl">
                 <BorderBeam />
 
                 {/* Parallax Background Glow */}

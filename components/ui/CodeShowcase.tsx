@@ -615,13 +615,13 @@ export function CodeShowcase() {
                     exit={{ opacity: 0, y: 60, scale: 0.95 }}
                     viewport={{ once: false, amount: 0.1 }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative bg-[#0d0f14]/90 backdrop-blur-3xl rounded-2xl overflow-hidden shadow-[0_0_120px_rgba(0,0,0,0.9)] border border-white/5 flex flex-col h-[750px] group"
+                    className="relative bg-black/60 backdrop-blur-3xl rounded-2xl overflow-hidden shadow-[0_0_120px_rgba(0,0,0,0.9)] border border-white/5 flex flex-col h-[750px] group"
                 >
                     {/* Shadow Border Glow */}
                     <div className="absolute inset-0 border border-blue-500/10 rounded-2xl pointer-events-none group-hover:border-blue-500/20 transition-colors duration-500" />
 
                     {/* Title Bar */}
-                    <div className="bg-[#181a1f] h-11 flex items-center justify-between px-4 shrink-0 border-b border-black/40">
+                    <div className="bg-black/40 h-11 flex items-center justify-between px-4 shrink-0 border-b border-white/5">
                         <div className="flex gap-2 w-28">
                             <motion.div whileHover={{ scale: 1.2 }} className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] shadow-[0_0_8px_rgba(255,95,86,0.4)]" />
                             <motion.div whileHover={{ scale: 1.2 }} className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] shadow-[0_0_8px_rgba(255,189,46,0.4)]" />
@@ -638,7 +638,7 @@ export function CodeShowcase() {
                     <div className="flex flex-1 overflow-hidden">
 
                         {/* Explorer Sidebar */}
-                        <div className="w-72 bg-[#0d0f14] border-r border-white/5 flex flex-col shrink-0 select-none">
+                        <div className="w-72 bg-white/5 border-r border-white/5 flex flex-col shrink-0 select-none">
                             <div className="p-4 text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] flex justify-between items-center opacity-80">
                                 Explorer
                                 <motion.span whileHover={{ scale: 1.5 }} className="cursor-pointer font-normal opacity-50">···</motion.span>
@@ -679,9 +679,9 @@ export function CodeShowcase() {
                         {/* Editor Area */}
                         <div className="flex-1 flex flex-col relative bg-black/20">
                             {/* Editor Tabs - Decorative */}
-                            <div className="h-10 bg-[#181a1f] border-b border-white/5 flex items-center px-1">
+                            <div className="h-10 bg-black/40 border-b border-white/5 flex items-center px-1">
                                 <motion.div
-                                    className="bg-[#0d0f14] px-5 h-full flex items-center gap-3 border-t-2 border-blue-500"
+                                    className="bg-white/5 px-5 h-full flex items-center gap-3 border-t-2 border-blue-500"
                                     initial={false}
                                 >
                                     <DocumentIcon className="w-4 h-4 text-blue-400" />

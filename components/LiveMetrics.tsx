@@ -169,111 +169,107 @@ export const LiveMetrics = () => {
   ];
 
   return (
-    <div className="relative w-full">
-      {/* Heading Section */}
-      <div className="text-center mb-32 relative">
+    <section className="relative w-full py-20 bg-black overflow-hidden font-sans">
+      {/* Animated Neon Blue Dot Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-black" />
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-[0.4em] mb-12 text-blue-500/80 shadow-[0_0_20px_rgba(59,130,246,0.15)]"
-        >
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-          Live Infrastructure
-        </motion.div>
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(#3b82f6 1px, transparent 1px)`,
+            backgroundSize: '32px 32px',
+            maskImage: 'radial-gradient(circle at center, black, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 80%)'
+          }}
+        />
+        {/* Horizontal Neon Lines Accent */}
+        {/* <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" /> */}
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+      </div>
 
+      <div className="relative z-10 max-w-7xl mx-auto px-8">
+        {/* Heading Section */}
+        <div className="text-center mb-32 relative">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-[0.4em] mb-12 text-blue-500/80 shadow-[0_0_20px_rgba(59,130,246,0.15)]"
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+            Live Infrastructure
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <h2 className="text-[8vw] lg:text-[6vw] font-[1000] tracking-[-0.05em] leading-[0.8] uppercase italic select-none mb-8">
+              <span className="bg-gradient-to-b from-white to-gray-600 bg-clip-text text-transparent">Real-Time</span>
+              <br />
+              <span className="bg-gradient-to-b from-gray-500 to-gray-800 bg-clip-text text-transparent opacity-40">Intelligence</span>
+            </h2>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-gray-500 text-sm md:text-base font-bold uppercase tracking-[0.2em] italic max-w-2xl mx-auto"
+          >
+            Performance metrics dynamically streamed from <span className="text-blue-500">Cronos zkEVM</span> & <span className="text-blue-500">SUI</span> testnet environments.
+          </motion.p>
+        </div>
+
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {metricData.map((data, index) => (
+            <MetricCard
+              key={index}
+              {...data}
+              delay={index * 0.15}
+            />
+          ))}
+        </div>
+
+
+        {/* Technical Metadata Footer */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <h2 className="text-[8vw] lg:text-[6vw] font-[1000] tracking-[-0.05em] leading-[0.8] uppercase italic select-none mb-8">
-            <span className="bg-gradient-to-b from-white to-gray-600 bg-clip-text text-transparent">Real-Time</span>
-            <br />
-            <span className="bg-gradient-to-b from-gray-500 to-gray-800 bg-clip-text text-transparent opacity-40">Intelligence</span>
-          </h2>
-        </motion.div>
-
-        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-gray-500 text-sm md:text-base font-bold uppercase tracking-[0.2em] italic max-w-2xl mx-auto"
+          transition={{ delay: 1 }}
+          className="mt-24 flex flex-col md:flex-row items-center justify-between gap-8 border-t border-white/5 pt-12"
         >
-          Performance metrics dynamically streamed from <span className="text-blue-500">Cronos zkEVM</span> & <span className="text-blue-500">SUI</span> testnet environments.
-        </motion.p>
-      </div>
-
-      {/* Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {metricData.map((data, index) => (
-          <MetricCard
-            key={index}
-            {...data}
-            delay={index * 0.15}
-          />
-        ))}
-      </div>
-
-      {/* Background Animated Neon Dots (Particle System) */}
-      <div className="absolute inset-0 pointer-events-none -z-20 overflow-hidden">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{
-              opacity: Math.random() * 0.3 + 0.1,
-              x: Math.random() * 100 + "%",
-              y: Math.random() * 100 + "%",
-              scale: Math.random() * 0.5 + 0.5
-            }}
-            animate={{
-              y: [null, (Math.random() * 100) + "%"],
-              opacity: [null, Math.random() * 0.5 + 0.2, Math.random() * 0.3 + 0.1],
-              scale: [null, Math.random() * 1.2 + 0.8, Math.random() * 0.5 + 0.5]
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "linear",
-              delay: Math.random() * -20
-            }}
-            className="absolute w-1 h-1 bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,1)]"
-          />
-        ))}
-      </div>
-
-      {/* Background Ambient Effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none -z-10">
-        <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] rounded-full" />
-        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-emerald-500/5 blur-[120px] rounded-full" />
-      </div>
-
-      {/* Technical Metadata Footer */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="mt-24 flex flex-col md:flex-row items-center justify-between gap-8 border-t border-white/5 pt-12"
-      >
-        <div className="flex gap-12">
-          <div className="flex flex-col gap-1">
-            <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Protocol Version</span>
-            <span className="text-[11px] font-bold text-white/60 tabular-nums">V3.5.2-STARK</span>
+          <div className="flex gap-12">
+            <div className="flex flex-col gap-1">
+              <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Protocol Version</span>
+              <span className="text-[11px] font-bold text-white/60 tabular-nums">V3.5.2-STARK</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Last Epoch Finalized</span>
+              <span className="text-[11px] font-bold text-white/60 tabular-nums">#18,242,091</span>
+            </div>
           </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Last Epoch Finalized</span>
-            <span className="text-[11px] font-bold text-white/60 tabular-nums">#18,242,091</span>
-          </div>
-        </div>
 
-        <div className="px-6 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-4">
-          <div className="flex -space-x-2">
-            {[1, 2, 3].map(i => (
-              <div key={i} className="w-5 h-5 rounded-full border border-black bg-gray-800" />
-            ))}
+          <div className="px-6 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-4">
+            <div className="flex -space-x-2">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="w-5 h-5 rounded-full border border-black bg-gray-800" />
+              ))}
+            </div>
+            <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.1em]">241 Node Operators Active</span>
           </div>
-          <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.1em]">241 Node Operators Active</span>
-        </div>
-      </motion.div>
-    </div>
+        </motion.div>
+      </div>
+    </section >
   );
 };

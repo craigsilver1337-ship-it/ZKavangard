@@ -62,7 +62,7 @@ const StatItem = ({ label, value, desc, icon: Icon, delay = 0 }: { label: string
 
 export function Stats() {
   return (
-    <section className="relative w-full py-48 overflow-hidden bg-black">
+    <section className="relative w-full pt-32 pb-0 overflow-hidden bg-black">
       {/* Background Accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
 

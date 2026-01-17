@@ -6,7 +6,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#f5f5f7] dark:bg-slate-900 transition-colors duration-300">
+    <footer className="bg-black transition-colors duration-300">
       <div className="max-w-[980px] mx-auto px-6 lg:px-8">
         {/* Top section - Navigation */}
         <div className="pt-12 lg:pt-16 pb-8 lg:pb-10">

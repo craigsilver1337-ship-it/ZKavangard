@@ -26,6 +26,7 @@ export function Navbar() {
     { href: '/dashboard', label: 'Dashboard' },
     { href: '/agents', label: 'Agents' },
     { href: '/simulator', label: 'Simulator' },
+    { href: '/docs', label: 'Docs' },
   ];
 
   return (
