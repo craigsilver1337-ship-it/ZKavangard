@@ -98,7 +98,7 @@ export function Hero() {
               {/* CTA - responsive button size */}
               <motion.div
                 variants={itemVariants}
-                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-4"
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-12"
               >
                 <Link
                   href="/dashboard"
@@ -107,13 +107,13 @@ export function Hero() {
                   <span>Deploy Agents</span>
                   <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-[200ms] ease-[cubic-bezier(0.4,0,0.2,1)]" strokeWidth={2.5} />
                 </Link>
-                <a
-                  href="#features"
+                <Link
+                  href="/docs"
                   className="group flex items-center gap-2 text-callout sm:text-headline font-medium text-ios-blue hover:text-[#0066FF] transition-colors duration-[200ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
                 >
-                  <span>View Architecture</span>
+                  <span>Read Docs</span>
                   <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
-                </a>
+                </Link>
               </motion.div>
             </div>
 

@@ -8,14 +8,15 @@ const plans = [
         id: 'pro',
         name: 'VANGUARD SNIPER',
         badge: 'RECOMMENDED',
-        price: '0.1%',
-        period: '/ profit fee',
-        description: 'Elite autonomous execution engine',
+        price: '1%',
+        period: 'SERVICE FEE',
+        subPrice: '(0% for $ZKV Holders)',
+        description: 'Zero-Trace Execution Environment.',
         features: [
             'Anti-MEV Stealth Mode (Jito)',
             'Zero-Latency ZK-Sniping',
             'Automated Profit Taking',
-            'Copy-Trade Protection'
+            'Anti-Copy Countermeasures'
         ],
         buttonText: 'Deploy Sniper',
         highlight: true,
@@ -27,11 +28,11 @@ const plans = [
         badge: null,
         price: 'FREE',
         period: 'ACCESS',
-        description: 'Basic intelligence unit',
+        description: 'Unprotected Recon Unit',
         features: [
-            'Standard RPC Node',
-            'Manual Target Selection',
-            'Public Transaction Pool',
+            'Public RPC (High Latency)',
+            'Manual Execution (Slow)',
+            'Mempool: Visible to Preds',
             'Basic Portfolio Tracking'
         ],
         buttonText: 'Initialize Scout',
@@ -42,9 +43,9 @@ const plans = [
         id: 'teams',
         name: 'SWARM COMMANDER',
         badge: null,
-        price: '0.05%',
-        period: '/ tx fee',
-        description: 'Orchestration for DAOs & Squads',
+        price: 'DAO',
+        period: 'GOVERNANCE',
+        description: 'Multi-Agent Swarm Orchestration',
         features: [
             'Multi-Sig DAO Control',
             'Shared Strategy Vaults',
@@ -63,12 +64,12 @@ const plans = [
         period: 'ACCESS',
         description: 'Institutional-grade shadow operations',
         features: [
-            'Private RPC Uplink',
+            'Direct Validator Layout (Fiber)',
             'Dedicated ZK-Prover Nodes',
             'High-Frequency Execution',
-            '24/7 Direct Support Line'
+            'War Room Access'
         ],
-        buttonText: 'Contact High Command',
+        buttonText: 'REQUEST UPLINK',
         highlight: false,
         color: 'from-purple-600 to-blue-600'
     }
@@ -187,6 +188,17 @@ export function HeroPricing() {
                                             {plan.period}
                                         </motion.span>
                                     </div>
+                                    {/* @ts-ignore */}
+                                    {plan.subPrice && (
+                                        <motion.div
+                                            className="text-yellow-400 font-bold text-xs uppercase tracking-wider mb-2"
+                                            animate={{ opacity: [0.8, 1, 0.8] }}
+                                            transition={{ duration: 1.5, repeat: Infinity }}
+                                        >
+                                            {/* @ts-ignore */}
+                                            {plan.subPrice}
+                                        </motion.div>
+                                    )}
                                     <p className="text-gray-500 mt-2 font-medium text-sm max-w-[200px]">{plan.description}</p>
                                 </div>
 

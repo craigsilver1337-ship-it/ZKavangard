@@ -11,25 +11,25 @@ import {
 const steps = [
   {
     number: '01',
-    title: 'Protocol Initialization',
-    description: 'Establish secure ZK-handshake with your non-custodial wallet.',
-    detail: 'Authorization Phase',
+    title: 'SECURE UPLINK',
+    description: <>Connect via <strong className="text-blue-400">Phantom</strong> or <strong className="text-blue-400">Solflare</strong>. Generate a session key for the Swarm. Your private keys never leave your device.</>,
+    detail: 'LINK ESTABLISHED',
     icon: WalletIcon,
     color: '#3b82f6' // Blue
   },
   {
     number: '02',
-    title: 'Neural Surveillance',
-    description: 'Swarm agents continuously scan mempools for yield and risk vectors.',
-    detail: 'Analysis Phase',
+    title: 'SELECT LOADOUT',
+    description: <>Choose your attack profile: <strong className="text-blue-400">'Sniper'</strong>, <strong className="text-blue-400">'Copy-Trade'</strong>, or <strong className="text-blue-400">'Presale'</strong>. Set your Stop-Loss and Moonbag targets.</>,
+    detail: 'TARGET LOCK',
     icon: ChartBarIcon,
     color: '#a855f7' // Purple
   },
   {
     number: '03',
-    title: 'Atomic Settlement',
-    description: 'Transactions are bundled and settled via gas-optimized proofs.',
-    detail: 'Execution Phase',
+    title: 'ENGAGE SWARM',
+    description: <>Agents auto-execute using <strong className="text-blue-400">Jito Bundles</strong>. Bypassing public congestion for guaranteed <strong className="text-blue-400">Block-0 entry</strong>.</>,
+    detail: 'WEAPONS FREE',
     icon: BoltIcon,
     color: '#10b981' // Green
   },
@@ -109,8 +109,8 @@ export function HowItWorks() {
         <div className="absolute inset-0 bg-black" />
 
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center pointer-events-none -translate-x-[5%]">
-          <span className="text-[5vw] font-[1000] text-white/[0.02] tracking-widest uppercase select-none leading-none blur-[5px]">
-            Deployment Pipeline
+          <span className="text-[5vw] font-[1000] text-white/[0.03] tracking-widest uppercase select-none leading-none blur-[5px]">
+            INITIATION SEQUENCE
           </span>
         </div>
 
@@ -124,9 +124,7 @@ export function HowItWorks() {
         />
       </div>
 
-      {/* Boundary Fades */}
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black via-black/80 to-transparent z-0 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black via-black/80 to-transparent z-0 pointer-events-none" />
+
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-24">
@@ -141,10 +139,10 @@ export function HowItWorks() {
           </motion.div>
 
           <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6 relative">
-            Deployment <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Pipeline</span>
+            INITIATION <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">SEQUENCE</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-light">
-            Initialize the Vanguard swarm in three autonomous stages.
+            Deploy your personal Vanguard swarm in 3 tactical steps. From connection to first snipe in &lt; 30 seconds.
           </p>
         </div>
 

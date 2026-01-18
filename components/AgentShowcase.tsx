@@ -48,24 +48,24 @@ const LeadAgentCard = () => {
 
       <div className="relative z-10">
         <div className="flex items-center gap-4 mb-6">
-          <TechBadge>CORE SYSTEM</TechBadge>
+          <TechBadge>HIVE MIND</TechBadge>
           <div className="flex items-center gap-2 text-xs font-mono text-blue-300/60 tracking-wider">
             <PulseDot color="bg-blue-400" />
             <span>MAINNET: ONLINE</span>
           </div>
         </div>
-        <h3 className="text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight drop-shadow-lg">Lead Orchestrator</h3>
+        <h3 className="text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight drop-shadow-lg">COMMANDER NODE</h3>
         <p className="text-lg text-gray-400 max-w-lg leading-relaxed font-light">
-          The central nervous system of the Vanguard swarm. Orchestrates inter-agent communication and makes final execution decisions based on aggregated risk models.
+          The central nervous system of the Vanguard swarm. Coordinates 1,000+ sniper bots to hit targets simultaneously on Pump.fun.
         </p>
       </div>
 
       <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
         {[
-          { label: "Active Threads", value: "1,024" },
-          { label: "Uptime", value: "99.99%" },
-          { label: "Decisions/Sec", value: "842" },
-          { label: "Global Sync", value: "32ms" }
+          { label: "Active Threads", value: "2,048" },
+          { label: "Uptime", value: "100%" },
+          { label: "Decisions/Sec", value: "1,420" },
+          { label: "Global Sync", value: "12ms" }
         ].map((stat, i) => (
           <div key={i} className="flex flex-col p-4 rounded-2xl bg-white/[0.03] border border-white/[0.05] group-hover:bg-white/[0.05] group-hover:border-blue-500/20 transition-all duration-300">
             <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1.5">{stat.label}</span>
@@ -89,16 +89,16 @@ const RiskAgentCard = () => {
           <div className="p-3 rounded-2xl bg-blue-500/5 border border-blue-500/10 text-blue-400 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]">
             <ShieldCheckIcon className="w-6 h-6" />
           </div>
-          <TechBadge>SENTINEL</TechBadge>
+          <TechBadge>ANTI-RUG</TechBadge>
         </div>
-        <h4 className="text-2xl font-bold text-white mb-2 tracking-tight">Risk Guardian</h4>
-        <p className="text-sm text-gray-400 leading-relaxed font-light">Continuous 24/7 vector analysis monitoring on-chain volatility and smart contract exposure.</p>
+        <h4 className="text-2xl font-bold text-white mb-2 tracking-tight">RUG SENTINEL</h4>
+        <p className="text-sm text-gray-400 leading-relaxed font-light">Scans Dev wallets for early dumping signs. Auto-sells your bags milliseconds before the Rug Pull hits.</p>
       </div>
 
       <div className="mt-8 space-y-3">
         <div className="flex justify-between items-center text-xs font-mono text-gray-400 tracking-wider">
           <span>THREAT LEVEL</span>
-          <span className="text-blue-400 font-bold">LOW (12/100)</span>
+          <span className="text-blue-400 font-bold">DEV WALLET: CLEAN</span>
         </div>
         {/* Fake scanning bar */}
         <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
@@ -125,20 +125,20 @@ const HedgingAgentCard = () => {
           <div className="p-3 rounded-2xl bg-blue-500/5 border border-blue-500/10 text-blue-400 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]">
             <BanknotesIcon className="w-6 h-6" />
           </div>
-          <TechBadge>STRATEGY</TechBadge>
+          <TechBadge>BLOCK-0</TechBadge>
         </div>
-        <h4 className="text-2xl font-bold text-white mb-2 tracking-tight">Alpha Hedger</h4>
-        <p className="text-sm text-gray-400 leading-relaxed font-light">Delta-neutral strategy execution engine. Dynamically rebalances open positions to preserve principal.</p>
+        <h4 className="text-2xl font-bold text-white mb-2 tracking-tight">MOMENTUM SNIPER</h4>
+        <p className="text-sm text-gray-400 leading-relaxed font-light">Detects liquidity injection on Pump.fun and buys in the same block. Exits automatically based on bonding curve progress.</p>
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-3">
         <div className="p-3 rounded-xl bg-blue-500/5 border border-blue-500/10 text-center hover:bg-blue-500/10 transition-colors">
           <div className="text-[9px] text-blue-400/60 uppercase tracking-widest mb-1">ROI (24H)</div>
-          <div className="text-lg font-mono font-bold text-blue-400">+2.45%</div>
+          <div className="text-lg font-mono font-bold text-blue-400">+420%</div>
         </div>
         <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-center hover:bg-white/10 transition-colors">
           <div className="text-[9px] text-gray-500 uppercase tracking-widest mb-1">POSITIONS</div>
-          <div className="text-lg font-mono font-bold text-white">4 LONG</div>
+          <div className="text-lg font-mono font-bold text-white">MOONBAGS</div>
         </div>
       </div>
     </motion.div>
@@ -157,27 +157,27 @@ const SettlementAgentCard = () => {
           <div className="p-3 rounded-2xl bg-blue-500/5 border border-blue-500/10 text-blue-400 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]">
             <ArrowsRightLeftIcon className="w-6 h-6" />
           </div>
-          <TechBadge>EXECUTOR</TechBadge>
+          <TechBadge>STEALTH</TechBadge>
         </div>
-        <h4 className="text-2xl font-bold text-white mb-2 tracking-tight">Zero-Knowledge Settlement</h4>
-        <p className="text-sm text-gray-400 leading-relaxed font-light">Batches transactions into single proofs for atomic settlement.</p>
+        <h4 className="text-2xl font-bold text-white mb-2 tracking-tight">GHOST EXECUTION</h4>
+        <p className="text-sm text-gray-400 leading-relaxed font-light">Executes trades in a private Jito mempool. Invisible to copy-traders until the green candle prints.</p>
 
         <div className="my-6 space-y-4 bg-blue-500/5 rounded-xl p-4 border border-blue-500/10">
           <div className="flex justify-between items-center">
             <span className="text-[10px] uppercase tracking-widest text-blue-300/60">Batch Compression</span>
-            <span className="text-xs font-mono font-bold text-blue-400">98.2%</span>
+            <span className="text-xs font-mono font-bold text-blue-400">100%</span>
           </div>
           <div className="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: "0%" }}
-              whileInView={{ width: "98.2%" }}
+              whileInView={{ width: "100%" }}
               transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
               className="h-full bg-blue-500"
             />
           </div>
           <div className="flex justify-between items-center pt-1">
             <span className="text-[10px] uppercase tracking-widest text-blue-300/60">Proof Latency</span>
-            <span className="text-xs font-mono font-bold text-white">~4.2ms</span>
+            <span className="text-xs font-mono font-bold text-white">~0.4s</span>
           </div>
         </div>
       </div>
@@ -285,7 +285,7 @@ export function AgentShowcase() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6"
           >
-            Autonomous <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">Swarm Intelligence</span>
+            AUTONOMOUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">WARFARE SWARM</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -293,7 +293,7 @@ export function AgentShowcase() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-light"
           >
-            A decentralized federation of specialized AI agents working in concert to optimize, secure, and grow your digital assets 24/7.
+            A decentralized federation of specialized AI agents working in concert to <strong className="text-blue-400">snipe, secure, and moonbag</strong> your assets 24/7.
           </motion.p>
         </div>
 

@@ -74,7 +74,7 @@ const FeatureCard = ({ title, description, icon: Icon, accentColor, delay, detai
                                 className="w-2 h-2 rounded-full shadow-[0_0_10px_currentColor]"
                                 style={{ backgroundColor: accentColor, color: accentColor }}
                             />
-                            <span className="text-[11px] font-[1000] uppercase tracking-[0.3em] text-gray-500 group-hover:text-white transition-colors duration-300">
+                            <span className="text-[13px] font-[900] uppercase tracking-[0.2em] text-gray-400 group-hover:text-white transition-colors duration-300">
                                 {detail}
                             </span>
                         </div>
@@ -129,46 +129,46 @@ const QuantumLatticeIcon = () => (
 const features = [
     {
         icon: ZKShieldIcon,
-        title: 'ZK Proofs',
-        description: 'Zero-knowledge verification for uncompromised privacy and computational integrity.',
+        title: 'ZK-CLOAKING',
+        description: 'Invisible Execution.',
         accentColor: '#3b82f6',
         details: [
-            'Offchain verification',
-            'State transition privacy',
-            'Scalable trustlessness'
+            'Mempool Invisibility (Dark Tx)',
+            'Trade Intent Masking',
+            'Trustless Verification'
         ]
     },
     {
         icon: AIBrainIcon,
-        title: 'AI Agents',
-        description: 'Multi-agent autonomous systems executing real-time yield harvesting and risk mitigation.',
+        title: 'SWARM SNIPERS',
+        description: 'Pump.fun Dominance.',
         accentColor: '#10b981',
         details: [
-            'Autonomous monitoring',
-            'Dynamic rebalancing',
-            'Neural swarms core'
+            'New Pair Scanning (ms precision)',
+            'Rug-Pull Detection Logic',
+            'Auto-Sell Triggers'
         ]
     },
     {
         icon: AnalyticsRadarIcon,
-        title: 'Live Analytics',
-        description: 'Sub-second latency updates on global risk vectors and institutional liquidity flows.',
+        title: 'TRENCH RADAR',
+        description: 'On-Chain Intelligence.',
         accentColor: '#f59e0b',
         details: [
-            'Slippage heatmaps',
-            'Volatility modeling',
-            'Signal aggregation'
+            'Dev Wallet Tracking',
+            'Insider Bundle Alerts',
+            'Whale Accumulation Heatmaps'
         ]
     },
     {
         icon: QuantumLatticeIcon,
-        title: 'Quantum STARK',
-        description: 'Post-quantum cryptographic primitives securing assets against next-gen compute threats.',
+        title: '$ZKV EXPANSION',
+        description: 'Roadmap to Valuation.',
         accentColor: '#8b5cf6',
         details: [
-            'Shor-resistant hashes',
-            'Lattice foundations',
-            'Future-proof security'
+            'Phase 1: Pump.fun Fair Launch',
+            'Phase 2: Raydium + DexScreener Ads',
+            'Phase 3: CEX Listings & Multi-Chain'
         ]
     }
 ];

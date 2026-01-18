@@ -3,9 +3,9 @@
 import { useState, useEffect, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { useAccount, useBalance } from 'wagmi';
-import { 
-  Bot, Shield, Briefcase, TrendingUp, History, 
-  BarChart3, Zap, MessageSquare, ChevronRight, 
+import {
+  Bot, Shield, Briefcase, TrendingUp, History,
+  BarChart3, Zap, MessageSquare, ChevronRight,
   Menu, X, Settings, ArrowUpRight, ArrowLeftRight
 } from 'lucide-react';
 import { PortfolioOverview } from '@/components/dashboard/PortfolioOverview';
@@ -108,7 +108,7 @@ export default function DashboardPage() {
   // Get portfolio count and other data from centralized context - no redundant fetches!
   const { derived } = usePositions();
   const userPortfolioCount = derived?.portfolioCount || 0;
-  
+
   const [activeNav, setActiveNav] = useState<NavId>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [swapModalOpen, setSwapModalOpen] = useState(false);
@@ -116,10 +116,10 @@ export default function DashboardPage() {
   const [notification, setNotification] = useState<string | null>(null);
   const [agentMessage, setAgentMessage] = useState<string | null>(null);
   const [showChat, setShowChat] = useState(false);
-  
+
   const displayAddress = address?.toString() || '';
   const portfolioAssets = ['CRO', 'USDC', 'WBTC', 'ETH'];
-  
+
   // Close mobile menu on nav change
   const handleNavChange = (id: NavId) => {
     setActiveNav(id);
@@ -131,7 +131,7 @@ export default function DashboardPage() {
     setNotification(`Creating hedge for ${market.relatedAssets.join(', ')}...`);
     setTimeout(() => setNotification(null), 3000);
   };
-  
+
   const handleAgentAnalysis = (market: PredictionMarket) => {
     const msg = market.recommendation === 'HEDGE'
       ? `🚨 Alert for ${market.relatedAssets.join(', ')}\n\nRecommending immediate hedge activation.`
@@ -156,7 +156,7 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7]">
+    <div className="min-h-screen bg-black">
       {/* Mobile Header - Only visible on mobile */}
       <header className="lg:hidden fixed top-[52px] left-0 right-0 z-40 bg-white border-b border-black/5">
         <div className="flex items-center justify-between px-4 h-14">
@@ -167,11 +167,11 @@ export default function DashboardPage() {
           >
             <Menu className="w-6 h-6" />
           </button>
-          
+
           <h1 className="text-lg font-semibold text-[#1d1d1f]">
             {navItems.find(n => n.id === activeNav)?.label}
           </h1>
-          
+
           <button
             onClick={() => setShowChat(true)}
             className="p-2 -mr-2 text-blue-600 hover:text-blue-700 transition-colors"
@@ -184,7 +184,7 @@ export default function DashboardPage() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div 
+        <div
           className="lg:hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
           onClick={() => setMobileMenuOpen(false)}
         />
@@ -208,7 +208,7 @@ export default function DashboardPage() {
               <X className="w-5 h-5" />
             </button>
           </div>
-          
+
           {/* Wallet Info */}
           <div className="p-4 border-b border-black/5">
             <div className="flex items-center gap-3">
@@ -227,21 +227,21 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Mobile Nav */}
           <nav className="flex-1 py-2 overflow-y-auto">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeNav === item.id;
-              
+
               return (
                 <button
                   key={item.id}
                   onClick={() => handleNavChange(item.id)}
                   className={`
                     w-full flex items-center gap-3 px-4 py-3 text-left transition-colors
-                    ${isActive 
-                      ? 'bg-[#007AFF]/10 border-r-2 border-[#007AFF]' 
+                    ${isActive
+                      ? 'bg-[#007AFF]/10 border-r-2 border-[#007AFF]'
                       : 'hover:bg-[#f5f5f7]'
                     }
                   `}
@@ -257,7 +257,7 @@ export default function DashboardPage() {
               );
             })}
           </nav>
-          
+
           {/* Mobile Menu Footer */}
           <div className="p-4 border-t border-black/5">
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#f5f5f7] rounded-[18px] transition-colors">
@@ -290,31 +290,31 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="flex-1 py-4 overflow-y-auto">
             <p className="px-5 mb-3 text-[13px] font-semibold text-[#86868b] uppercase tracking-[0.06em]">
               Menu
             </p>
-            
+
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeNav === item.id;
-              
+
               return (
                 <button
                   key={item.id}
                   onClick={() => setActiveNav(item.id)}
                   className={`
                     w-[calc(100%-16px)] mx-2 mb-1 flex items-center gap-3 px-4 py-2.5 rounded-[12px] text-left transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]
-                    ${isActive 
-                      ? 'bg-[#007AFF] shadow-[0_2px_8px_rgba(0,122,255,0.25)]' 
+                    ${isActive
+                      ? 'bg-[#007AFF] shadow-[0_2px_8px_rgba(0,122,255,0.25)]'
                       : 'hover:bg-[#f5f5f7]'
                     }
                   `}
                 >
-                  <Icon 
-                    className={`w-5 h-5 ${isActive ? 'text-white' : 'text-[#86868b]'}`} 
+                  <Icon
+                    className={`w-5 h-5 ${isActive ? 'text-white' : 'text-[#86868b]'}`}
                   />
                   <span className={`text-[15px] font-medium tracking-[-0.01em] ${isActive ? 'text-white' : 'text-[#1d1d1f]'}`}>{item.label}</span>
                   {item.badge && (
@@ -328,15 +328,15 @@ export default function DashboardPage() {
                 </button>
               );
             })}
-            
+
             <div className="my-4 mx-4 border-t border-black/5" />
-            
+
             <button className="w-[calc(100%-16px)] mx-2 flex items-center gap-3 px-4 py-2.5 rounded-[12px] text-left hover:bg-[#f5f5f7] transition-colors duration-200">
               <Settings className="w-5 h-5 text-[#86868b]" strokeWidth={2} />
               <span className="text-[15px] font-medium text-[#1d1d1f] tracking-[-0.01em]">Settings</span>
             </button>
           </nav>
-          
+
           {/* AI Assistant Button */}
           <div className="p-4 border-t border-black/5">
             <button
@@ -348,17 +348,17 @@ export default function DashboardPage() {
             </button>
           </div>
         </aside>
-        
+
         {/* Main Content */}
         <main className="flex-1 min-h-[calc(100vh-52px)] pt-14 lg:pt-0">
           <div className="max-w-[1280px] mx-auto px-5 py-6 lg:px-8 lg:py-10">
             {/* Page Header - Desktop only */}
             <div className="hidden lg:block mb-8">
-              <h1 className="text-[34px] font-bold text-[#1d1d1f] tracking-[-0.02em] leading-[1.1]">
+              <h1 className="text-[34px] font-bold text-white tracking-[-0.02em] leading-[1.1]">
                 {navItems.find(n => n.id === activeNav)?.label}
               </h1>
             </div>
-            
+
             {/* Content Area */}
             <Suspense fallback={<LoadingSkeleton height="h-96" />}>
               {renderContent()}
@@ -366,7 +366,7 @@ export default function DashboardPage() {
           </div>
         </main>
       </div>
-      
+
       {/* Notification Toast */}
       {notification && (
         <div className="fixed top-20 lg:top-[68px] left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-2 duration-300">
@@ -387,7 +387,7 @@ export default function DashboardPage() {
       {/* Chat Panel */}
       {showChat && (
         <>
-          <div 
+          <div
             className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none lg:pointer-events-none"
             onClick={() => setShowChat(false)}
           />
@@ -403,7 +403,7 @@ export default function DashboardPage() {
                     <span className="text-[11px] text-[#86868b]">Your portfolio co-pilot</span>
                   </div>
                 </div>
-                <button 
+                <button
                   onClick={() => setShowChat(false)}
                   className="p-2 text-[#86868b] hover:text-[#1d1d1f] hover:bg-[#f5f5f7] rounded-full transition-all"
                 >
@@ -417,7 +417,7 @@ export default function DashboardPage() {
           </div>
         </>
       )}
-      
+
       {/* Chat FAB - Hidden when chat is open */}
       {!showChat && (
         <button
@@ -452,13 +452,13 @@ export default function DashboardPage() {
           <div className="space-y-4 sm:space-y-6">
             {/* Portfolio Card */}
             <Card>
-              <PortfolioOverview 
+              <PortfolioOverview
                 address={displayAddress}
                 onNavigateToPositions={() => setActiveNav('positions')}
                 onNavigateToHedges={() => setActiveNav('hedges')}
               />
             </Card>
-            
+
             {/* Stats Grid - Stack on mobile, 2 cols on tablet+ */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-stretch">
               <Card className="flex flex-col">
@@ -467,12 +467,12 @@ export default function DashboardPage() {
                   <RiskMetrics address={displayAddress} />
                 </div>
               </Card>
-              
+
               <Card className="flex flex-col">
-                <CardHeader 
-                  title="Active Hedges" 
+                <CardHeader
+                  title="Active Hedges"
                   action={
-                    <button 
+                    <button
                       onClick={() => setActiveNav('hedges')}
                       className="flex items-center gap-1 text-sm text-[#007AFF] font-medium hover:opacity-80 transition-opacity"
                     >
@@ -485,51 +485,51 @@ export default function DashboardPage() {
                 </div>
               </Card>
             </div>
-            
+
             {/* Agent Alert */}
             {agentMessage && (
-              <div className="p-4 sm:p-6 bg-[#007AFF]/5 border border-[#007AFF]/20 rounded-[24px]">
+              <div className="p-4 sm:p-6 bg-[#007AFF]/10 border border-[#007AFF]/20 rounded-[24px]">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#007AFF] rounded-[18px] flex items-center justify-center flex-shrink-0">
                     <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-[#1d1d1f] mb-1">AI Agent Alert</h3>
-                    <p className="text-[#86868b] text-sm sm:text-base whitespace-pre-line">{agentMessage}</p>
+                    <h3 className="font-semibold text-white mb-1">AI Agent Alert</h3>
+                    <p className="text-gray-400 text-sm sm:text-base whitespace-pre-line">{agentMessage}</p>
                   </div>
                 </div>
               </div>
             )}
           </div>
         );
-        
+
       case 'positions':
         return (
           <Card>
-            <CardHeader 
-              title="Positions" 
+            <CardHeader
+              title="Positions"
               subtitle="Manage your portfolio holdings"
             />
             <PositionsList address={displayAddress} />
           </Card>
         );
-        
+
       case 'hedges':
         return (
           <Card>
-            <CardHeader 
-              title="Active Hedges" 
+            <CardHeader
+              title="Active Hedges"
               subtitle="Your protective positions and options"
             />
             <ActiveHedges address={displayAddress} onCreateHedge={() => setHedgeModalOpen(true)} />
           </Card>
         );
-        
+
       case 'swap':
         return (
           <Card>
-            <CardHeader 
-              title="Token Swap" 
+            <CardHeader
+              title="Token Swap"
               subtitle="Swap tokens on VVS Finance"
             />
             <div className="p-6">
@@ -544,44 +544,44 @@ export default function DashboardPage() {
             </div>
           </Card>
         );
-        
+
       case 'agents':
         return (
           <div className="space-y-4 sm:space-y-6">
             <Card>
-              <CardHeader 
-                title="AI Agents" 
+              <CardHeader
+                title="AI Agents"
                 subtitle="Autonomous trading and risk management"
                 badge={<Badge color="green">ACTIVE</Badge>}
               />
               <AgentActivity address={displayAddress} />
             </Card>
-            
+
             {agentMessage && (
-              <div className="p-4 sm:p-6 bg-gradient-to-br from-[#007AFF]/5 to-[#AF52DE]/5 border border-[#007AFF]/20 rounded-[24px]">
+              <div className="p-4 sm:p-6 bg-gradient-to-br from-[#007AFF]/10 to-[#AF52DE]/10 border border-[#007AFF]/20 rounded-[24px]">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-[#007AFF] rounded-[18px] flex items-center justify-center">
                     <Bot className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-[#1d1d1f] mb-1">Latest Analysis</h3>
-                    <p className="text-[#86868b] whitespace-pre-line">{agentMessage}</p>
+                    <h3 className="font-semibold text-white mb-1">Latest Analysis</h3>
+                    <p className="text-gray-400 whitespace-pre-line">{agentMessage}</p>
                   </div>
                 </div>
               </div>
             )}
           </div>
         );
-        
+
       case 'insights':
         return (
-          <PredictionInsights 
+          <PredictionInsights
             onOpenHedge={handleOpenHedge}
             onTriggerAgentAnalysis={handleAgentAnalysis}
             assets={portfolioAssets}
           />
         );
-        
+
       case 'history':
         return (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
@@ -589,10 +589,10 @@ export default function DashboardPage() {
             <SettlementsPanel address={displayAddress} />
           </div>
         );
-        
+
       case 'zk-proofs':
         return <ZKProofDemo />;
-        
+
       default:
         return null;
     }
@@ -609,14 +609,14 @@ function Card({ children, className = '' }: { children: React.ReactNode; classNa
 }
 
 // Card Header component
-function CardHeader({ 
-  title, 
-  subtitle, 
-  action, 
-  badge 
-}: { 
-  title: string; 
-  subtitle?: string; 
+function CardHeader({
+  title,
+  subtitle,
+  action,
+  badge
+}: {
+  title: string;
+  subtitle?: string;
   action?: React.ReactNode;
   badge?: React.ReactNode;
 }) {
@@ -644,7 +644,7 @@ function Badge({ children, color }: { children: React.ReactNode; color: 'green' 
     green: 'bg-[#34C759] text-white',
     blue: 'bg-[#007AFF] text-white',
   };
-  
+
   return (
     <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold rounded-full ${colors[color]}`}>
       {color === 'green' && <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />}

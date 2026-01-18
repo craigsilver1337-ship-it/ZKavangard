@@ -108,7 +108,7 @@ interface CardProps {
     title: string;
     subtitle: string;
     icon: React.ReactNode;
-    items: { label: string; desc: string; icon: any; color?: string }[];
+    items: { label: string; desc: React.ReactNode; icon: any; color?: string }[];
     ctaText: string;
     gradient: string;
     glowColor: string;
@@ -372,96 +372,91 @@ export function ValueProposition() {
                         className="flex flex-col gap-2 items-center"
                     >
                         <p className="text-white/90 max-w-4xl mx-auto text-base md:text-lg font-bold tracking-[0.14em] leading-tight italic uppercase">
-                            Architecting the <span className="text-blue-500">bridge</span> between zero-<span className="text-blue-500">knowledge</span>
-                        </p>
-                        <p className="text-white/90 max-w-4xl mx-auto text-base md:text-lg font-bold tracking-[0.14em] leading-tight italic uppercase">
-                            verification
-                        </p>
-                        <p className="text-white/90 max-w-4xl mx-auto text-base md:text-lg font-bold tracking-[0.14em] leading-tight italic uppercase">
-                            <span className="text-blue-500">and</span> autonomous <span className="text-blue-500">agentic</span> intelligence.
+                            The fusion of <span className="text-blue-500">Zero-Knowledge</span> invisibility and Autonomous <span className="text-blue-500">Agentic</span> lethality.
                         </p>
                     </motion.div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-stretch">
                     {/* Path 1: Institutional Alpha */}
+                    {/* Path 1: Tokenomics Engine */}
                     <PerspectiveCard
-                        title="Institutional Alpha"
+                        title="TOKENOMICS ENGINE"
                         subtitle="Capital Velocity & Yield"
                         icon={<InstitutionalAlphaIcon />}
                         glowColor="#3b82f6"
                         gradient="from-blue-600/20 via-blue-500/10 to-transparent"
-                        ctaText="Enter Investor Portal"
+                        ctaText="ENTER GOVERNANCE PORTAL"
                         stats={[
-                            { label: "Genesis APY", value: "31.42%", trend: "STABLE" },
-                            { label: "Rev Share", value: "35 / 65", trend: "RATIO" }
+                            { label: "STAKING APR", value: "42.0%", trend: "STABLE" },
+                            { label: "FEE SHARE", value: "40 / 60", trend: "RATIO" }
                         ]}
                         items={[
                             {
                                 icon: YieldStreamIcon,
-                                label: "Real-Time Yield Streaming",
-                                desc: "35% of all global system fees are dynamically streamed to stakers in USDC/SOL via our custom x402 revenue engine."
+                                label: "Real-Time Sol Streaming",
+                                desc: <>40% of all Agent Swarm sniper fees are streamed to stakers in <strong className="text-blue-500">$SOL</strong>. No claiming, just wallet drops.</>
                             },
                             {
                                 icon: LiquidityVaultIcon,
-                                label: "Cross-Chain Liquidity Vaults",
-                                desc: "Institutional-grade vaults spanning Cronos, SUI, and Solana, providing deep liquidity for RWA settlements."
+                                label: "Solana Liquidity Vaults",
+                                desc: <>Deep liquidity integration with <strong className="text-blue-500">Raydium & Orca</strong> for instant position entry/exit.</>
                             },
                             {
                                 icon: GovernanceProxyIcon,
-                                label: "ZK-Governance Proxy",
-                                desc: "Securely influence risk-weighting algorithms and strategic treasury allocations without revealing your voting footprint."
+                                label: "Dark-Pool Governance",
+                                desc: "Vote on Swarm attack vectors using ZK-Proofs (Hidden Voting Power)."
                             },
                             {
                                 icon: BuybackIcon,
-                                label: "Buyback-on-Performance",
-                                desc: "Automated Lead Agent logic triggers systemic token buyback-and-burn cycles based on quarterly performance surplus."
+                                label: "Hyper-Deflationary Burn",
+                                desc: "Autonomous 'Buyback-and-Burn' triggers every 6 hours based on profit surplus."
                             },
                             {
                                 icon: PriorityAccessIcon,
-                                label: "Priority Pool Access",
-                                desc: "Stakers holding >0.5% of supply gain early-stage access to hyper-scarce institutional RWA offerings and seed rounds."
+                                label: "Seed Access",
+                                desc: "Top holders get Beta access to new 'Sniper-Agent' blueprints."
                             }
                         ]}
                     />
 
-                    {/* Path 2: Developer Ecosystem */}
+                    {/* Path 2: Warfare Stack */}
                     <PerspectiveCard
-                        title="Dev Excellence"
+                        title="WARFARE STACK"
                         subtitle="Modular Proving Layers"
                         icon={<DevExcellenceIcon />}
                         glowColor="#22d3ee"
                         gradient="from-cyan-500/20 via-cyan-400/10 to-transparent"
-                        ctaText="Initialize Protocol"
+                        ctaText="ACCESS DEV DOCS"
                         stats={[
-                            { label: "Proof Latency", value: "< 3.8s", trend: "ULTRA" },
-                            { label: "SDK Version", value: "V2.1.0", trend: "STABLE" }
+                            { label: "PROOF TIME", value: "< 400ms", trend: "ULTRA" },
+                            { label: "CODEBASE", value: "RUST / TS", trend: "STABLE" }
                         ]}
                         items={[
                             {
                                 icon: ProverServiceIcon,
-                                label: "STARK-as-a-Service",
-                                desc: "Access our military-grade FRI/AIR prover via high-speed API to verify computational logic for custom strategies."
+                                label: "ZK-Sniping-as-a-Service",
+                                desc: "Access our proprietary ZK-circuit via API to verify trade logic privately."
                             },
                             {
                                 icon: GaslessBridgeIcon,
-                                label: "Atomic Gasless Bridge",
-                                desc: "Zero-fee transaction orchestration for multi-chain dApps using our x402 and Sponsored Transaction frameworks."
+                                label: "Jito Bundle Integration",
+                                desc: <>Native support for <strong className="text-cyan-400">Jito Bundles</strong>. Bypass public mempools. 100% Sandwich-proof.</>
                             },
                             {
                                 icon: SwarmSDKIcon,
-                                label: "Swarm Orchestration SDK",
-                                desc: "Modular framework to build, train, and deploy specialized agents using our TypeScript and Rust core libraries."
+                                label: "Swarm SDK",
+                                desc: "Build custom Sniper Agents using our pre-trained models. Deploy in minutes."
                             },
                             {
                                 icon: SettlementIcon,
-                                label: "Omni-Chain Settlement",
-                                desc: "Unified settlement layer allowing for cross-chain intent fulfillment and atomic asset swaps via ZK-authentication."
+                                label: "Atomic Settlement",
+                                desc: <>Instant execution on <strong className="text-cyan-400">Pump.fun</strong> with atomic failure protection.</>
                             },
                             {
                                 icon: SandboxIcon,
-                                label: "Simulation Sandboxes",
-                                desc: "High-fidelity Monte Carlo environment to backtest agent-driven hedging models before on-chain execution."
+                                label: "Chaos Simulation",
+                                desc: "Backtest strategies against historical MEV-bot attacks."
                             }
                         ]}
                     />

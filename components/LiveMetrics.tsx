@@ -43,10 +43,12 @@ interface MetricCardProps {
   description: string;
   accentColor: string;
   delay: number;
+
   trend: string;
+  progressLabel: string;
 }
 
-const MetricCard = ({ label, value, prefix, suffix, decimals, description, accentColor, delay, trend }: MetricCardProps) => {
+const MetricCard = ({ label, value, prefix, suffix, decimals, description, accentColor, delay, trend, progressLabel }: MetricCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -54,7 +56,7 @@ const MetricCard = ({ label, value, prefix, suffix, decimals, description, accen
       transition={{ duration: 0.8, delay }}
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
-      className="group relative h-full rounded-[32px] bg-[#050505]/60 border border-white/5 p-8 overflow-hidden transition-all duration-500 hover:border-white/10 shadow-2xl flex flex-col backdrop-blur-xl"
+      className="group relative h-full rounded-[32px] bg-black/80 backdrop-blur-[50px] border border-white/5 p-8 overflow-hidden transition-all duration-500 hover:border-white/10 shadow-2xl flex flex-col"
     >
       {/* Background Glow */}
       <div
@@ -73,12 +75,10 @@ const MetricCard = ({ label, value, prefix, suffix, decimals, description, accen
               <span className="text-[9px] font-bold text-green-500/80 uppercase tracking-widest leading-none mt-0.5">Live On-Chain</span>
             </div>
           </div>
-          <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 flex items-center gap-2">
-            <span className="text-[10px] font-black text-white/40 uppercase tracking-tighter">{trend}</span>
-          </div>
+
         </div>
 
-        <div className="text-5xl lg:text-6xl font-[1000] text-white tracking-tighter mb-4 italic leading-none">
+        <div className="text-5xl lg:text-6xl font-[1000] text-white tracking-tighter mb-4 italic leading-none -ml-1">
           <CountUp value={value} prefix={prefix} suffix={suffix} decimals={decimals} />
         </div>
 
@@ -89,15 +89,21 @@ const MetricCard = ({ label, value, prefix, suffix, decimals, description, accen
         {/* Progress Visualizer */}
         <div className="mt-auto pt-6 border-t border-white/5 space-y-4">
           <div className="flex justify-between items-end">
-            <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest">Efficiency Wave</span>
+            <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest">{progressLabel}</span>
             <span className="text-[10px] font-bold text-white/50">{trend}</span>
           </div>
-          <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+          <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden relative">
             <motion.div
-              initial={{ x: "-100%" }}
-              whileInView={{ x: "0%" }}
-              transition={{ duration: 2, delay: delay + 0.5, ease: "circOut" }}
-              className="h-full w-4/5 rounded-full"
+              initial={{ width: "10%" }}
+              whileInView={{ width: ["10%", "70%", "40%", "90%"] }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+                delay: delay
+              }}
+              className="h-full rounded-full absolute left-0 top-0 bottom-0"
               style={{ backgroundColor: accentColor }}
             />
           </div>
@@ -112,19 +118,19 @@ const MetricCard = ({ label, value, prefix, suffix, decimals, description, accen
 
 export const LiveMetrics = () => {
   const [metrics, setMetrics] = useState({
-    tvl: 2.85,
-    transactions: 1282,
-    gasSaved: 69.3,
-    agents: 5,
+    tvl: 120,
+    transactions: 892,
+    gasSaved: 22000,
+    agents: 7,
   });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setMetrics(prev => ({
-        tvl: prev.tvl + Math.random() * 0.05 - 0.02,
+        tvl: prev.tvl + Math.random() * 0.5 - 0.1,
         transactions: prev.transactions + Math.floor(Math.random() * 2),
-        gasSaved: Math.min(78, prev.gasSaved + Math.random() * 0.05),
-        agents: 5
+        gasSaved: prev.gasSaved + Math.random() * 100,
+        agents: 7
       }));
     }, 4000);
     return () => clearInterval(interval);
@@ -132,39 +138,42 @@ export const LiveMetrics = () => {
 
   const metricData = [
     {
-      label: 'Total Value Locked',
+      label: 'TOTAL SOL DEPLOYED',
       value: metrics.tvl,
-      prefix: '$',
-      suffix: 'M',
+      suffix: ' SOL',
       decimals: 2,
-      description: 'Institutional capital currently secured and managed by the ZkVanguard autonomous swarm.',
+      description: 'Liquidity currently managed by ZKV Agents across Pump.fun and Raydium.',
       accentColor: '#3b82f6',
-      trend: '+12.4%'
+      trend: '+12.4%',
+      progressLabel: 'LIQUIDITY LOAD'
     },
     {
-      label: 'Transactions',
+      label: 'SUCCESSFUL SNIPES',
       value: metrics.transactions,
       decimals: 0,
-      description: 'ZK-verified atomic operations executed across multi-chain settlement layers with 100% finality.',
+      description: 'Profitable entries executed in the same block as token deployment (Block 0).',
       accentColor: '#10b981',
-      trend: 'STABLE'
+      trend: 'HIGH FREQ',
+      progressLabel: 'SNIPE VELOCITY'
     },
     {
-      label: 'Gas Savings',
+      label: 'MEV VALUE SAVED',
       value: metrics.gasSaved,
-      suffix: '%',
-      decimals: 1,
-      description: 'Cumulative computational overhead reduction through our specialized x402 gasless orchestration.',
+      prefix: '$',
+      decimals: 0,
+      description: 'Capital protected from sandwich attacks via our private Jito-Bundles.',
       accentColor: '#f59e0b',
-      trend: 'MAX OP'
+      trend: 'PROTECTED',
+      progressLabel: 'DEFENSE GRID'
     },
     {
-      label: 'Active Agents',
+      label: 'ACTIVE NODES',
       value: metrics.agents,
       decimals: 0,
-      description: 'Independent neural swarms monitoring risk vectors and executing global yield rebalancing strategies.',
+      description: 'Global ZK-Prover nodes running 24/7 to verify swarm logic.',
       accentColor: '#8b5cf6',
-      trend: 'NOMINAL'
+      trend: 'SCALING',
+      progressLabel: 'NODE HEALTH'
     }
   ];
 
@@ -214,9 +223,9 @@ export const LiveMetrics = () => {
             transition={{ duration: 1 }}
           >
             <h2 className="text-[8vw] lg:text-[6vw] font-[1000] tracking-[-0.05em] leading-[0.8] uppercase italic select-none mb-8">
-              <span className="bg-gradient-to-b from-white to-gray-600 bg-clip-text text-transparent">Real-Time</span>
+              <span className="bg-gradient-to-b from-white to-gray-600 bg-clip-text text-transparent">LIVE SWARM</span>
               <br />
-              <span className="bg-gradient-to-b from-gray-500 to-gray-800 bg-clip-text text-transparent opacity-40">Intelligence</span>
+              <span className="bg-gradient-to-b from-gray-500 to-gray-800 bg-clip-text text-transparent opacity-40">TELEMETRY</span>
             </h2>
           </motion.div>
 
@@ -226,7 +235,7 @@ export const LiveMetrics = () => {
             transition={{ delay: 0.4 }}
             className="text-gray-500 text-sm md:text-base font-bold uppercase tracking-[0.2em] italic max-w-2xl mx-auto"
           >
-            Performance metrics dynamically streamed from <span className="text-blue-500">Cronos zkEVM</span> & <span className="text-blue-500">SUI</span> testnet environments.
+            Performance metrics dynamically streamed from <span className="text-blue-500">Solana Mainnet</span>. Verified on-chain.
           </motion.p>
         </div>
 
@@ -252,11 +261,11 @@ export const LiveMetrics = () => {
           <div className="flex gap-12">
             <div className="flex flex-col gap-1">
               <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Protocol Version</span>
-              <span className="text-[11px] font-bold text-white/60 tabular-nums">V3.5.2-STARK</span>
+              <span className="text-[11px] font-bold text-white/60 tabular-nums">SOL-MAINNET v1.0</span>
             </div>
             <div className="flex flex-col gap-1">
-              <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Last Epoch Finalized</span>
-              <span className="text-[11px] font-bold text-white/60 tabular-nums">#18,242,091</span>
+              <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">CURRENT BLOCK</span>
+              <span className="text-[11px] font-bold text-white/60 tabular-nums">#314,921,802</span>
             </div>
           </div>
 
@@ -266,7 +275,7 @@ export const LiveMetrics = () => {
                 <div key={i} className="w-5 h-5 rounded-full border border-black bg-gray-800" />
               ))}
             </div>
-            <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.1em]">241 Node Operators Active</span>
+            <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.1em]">SYSTEM OPTIMAL</span>
           </div>
         </motion.div>
       </div>

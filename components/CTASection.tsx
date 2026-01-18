@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import {
   ArrowRightIcon,
@@ -10,6 +10,25 @@ import {
   ShieldCheckIcon,
   CpuChipIcon
 } from '@heroicons/react/24/outline';
+
+const AnimatedBorder = () => (
+  <div
+    className="absolute inset-0 rounded-[40px] pointer-events-none"
+    style={{
+      maskImage: 'linear-gradient(#fff, #fff), linear-gradient(#fff, #fff)',
+      maskClip: 'content-box, border-box',
+      maskComposite: 'exclude',
+      WebkitMaskComposite: 'xor',
+      padding: '1.5px',
+    }}
+  >
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+      className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_80deg,#3b82f6_180deg,transparent_280deg)] opacity-100"
+    />
+  </div>
+);
 
 const Terminal = () => {
   const [lines, setLines] = useState<string[]>([
@@ -48,7 +67,7 @@ const Terminal = () => {
         <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
         <span className="ml-2 text-white/30 text-[10px]">bash — 80x24</span>
       </div>
-      <div className="p-4 h-32 flex flex-col justify-end text-gray-400 space-y-1">
+      <div className="p-4 h-48 flex flex-col justify-end text-gray-400 space-y-1">
         <AnimatePresence mode='popLayout'>
           {lines.map((line, i) => (
             <motion.div
@@ -72,13 +91,38 @@ const Terminal = () => {
 };
 
 export function CTASection() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const xSpring = useSpring(mouseX, springConfig);
+  const ySpring = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(ySpring, [-0.5, 0.5], ["3deg", "-3deg"]);
+  const rotateY = useTransform(xSpring, [-0.5, 0.5], ["-3deg", "3deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
     <section className="relative w-full pt-40 pb-64 overflow-hidden bg-black font-sans">
 
       {/* Dynamic Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-black to-black" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-blue-600/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/40 via-black to-black" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-blue-600/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none animate-pulse" />
 
         {/* Animated Mesh Grid */}
         <div className="absolute inset-0 opacity-[0.1]"
@@ -94,8 +138,19 @@ export function CTASection() {
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black via-black/80 to-transparent z-0 pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black via-black/80 to-transparent z-0 pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="relative rounded-[40px] border border-white/10 bg-black/80 backdrop-blur-3xl overflow-hidden p-8 md:p-16 lg:p-24 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8" style={{ perspective: "1000px" }}>
+        <motion.div
+          ref={cardRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d"
+          }}
+          className="relative rounded-[40px] bg-black/80 backdrop-blur-3xl overflow-hidden p-8 md:p-16 lg:p-24 text-center group"
+        >
+          <AnimatedBorder />
 
           {/* Glossy Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] to-transparent pointer-events-none" />
@@ -109,9 +164,9 @@ export function CTASection() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-3xl md:text-4xl font-[1000] text-white tracking-tighter mb-5 leading-[0.9] uppercase italic"
+              className="text-4xl md:text-6xl font-[1000] text-white tracking-tighter mb-8 leading-[0.9] uppercase italic"
             >
-              Initialize <br />
+              INITIALIZE <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 animate-gradient-x">
                 Vanguard Protocol
               </span>
@@ -121,9 +176,9 @@ export function CTASection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-sm md:text-base text-gray-300 max-w-lg mx-auto leading-relaxed font-light mb-8"
+              className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed font-bold mb-10"
             >
-              Join <span className="text-white font-bold">2,400+</span> institutions utilizing our ZK-STARK engine to <span className="text-blue-400">automate yield</span>, eliminate slippage, and cryptographically secure assets.
+              The Solana trenches are brutal. Stop bringing a knife to a gunfight. <span className="text-blue-400">Equip your private ZK-Swarm</span> and dominate the mempool right now.
             </motion.p>
 
             {/* Visual Terminal Hook */}
@@ -145,12 +200,12 @@ export function CTASection() {
             >
               <Link
                 href="/dashboard"
-                className="group relative px-10 py-5 bg-blue-600 rounded-full overflow-hidden text-white font-bold tracking-wider uppercase transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(37,99,235,0.5)]"
+                className="group relative px-12 py-6 bg-blue-600 rounded-full overflow-hidden text-white font-[1000] text-lg tracking-widest uppercase transition-all hover:scale-105 shadow-[0_0_50px_rgba(37,99,235,0.6)] animate-pulse hover:animate-none"
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                 <span className="relative z-10 flex items-center gap-3">
-                  <CommandLineIcon className="w-5 h-5" />
-                  Launch Terminal
+                  <CommandLineIcon className="w-6 h-6" />
+                  DEPLOY SWARM &gt;&gt;&gt;
                 </span>
               </Link>
 
@@ -172,7 +227,7 @@ export function CTASection() {
             >
               <div className="flex items-center gap-3">
                 <ShieldCheckIcon className="w-5 h-5 text-blue-500" />
-                <span className="text-sm font-bold uppercase tracking-widest">Audited by Halborn</span>
+                <span className="text-sm font-bold uppercase tracking-widest">OPEN SOURCE ARCHITECTURE</span>
               </div>
               <div className="flex items-center gap-3">
                 <CpuChipIcon className="w-5 h-5 text-purple-500" />
@@ -184,8 +239,8 @@ export function CTASection() {
               </div>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </section >
   );
 }

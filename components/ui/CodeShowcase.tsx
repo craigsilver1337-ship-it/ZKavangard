@@ -604,8 +604,7 @@ export function CodeShowcase() {
                         transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                         className="text-gray-400 max-w-2xl mx-auto text-xl font-medium"
                     >
-                        Review the core ZK-STARK engine and autonomous agent architecture.
-                        Military-grade integrity for every computational step.
+                        Don't trust. Verify. Our ZK-STARK engine runs on immutable logic. No black boxes. No hidden backdoors. Just pure, auditable warfare code.
                     </motion.p>
                 </div>
 

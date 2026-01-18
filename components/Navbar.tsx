@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ConnectButton } from './ConnectButton';
 import { ChainSelector } from './ChainSelector';
-import { ThemeToggle } from './ThemeToggle';
+
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 
@@ -93,7 +93,6 @@ export function Navbar() {
 
           {/* Desktop - Chain Selector + Connect Button (Right side) */}
           <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle />
             <ChainSelector />
             <ConnectButton />
           </div>
@@ -128,10 +127,7 @@ export function Navbar() {
               ))}
             </div>
             <div className="mt-3 pt-3 px-3 border-t border-black/10 dark:border-white/10 space-y-3">
-              <div className="flex items-center justify-between py-2">
-                <span className="text-[17px] text-[#1d1d1f] dark:text-white">Appearance</span>
-                <ThemeToggle />
-              </div>
+
               <ChainSelector />
               <ConnectButton />
             </div>

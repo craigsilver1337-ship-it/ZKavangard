@@ -93,7 +93,7 @@ export function Stats() {
             viewport={{ once: false, amount: 0.1 }}
           >
             <h3 className="text-5xl md:text-7xl font-[1000] text-white tracking-tighter mb-6 uppercase italic leading-none">
-              Slippage Leakage
+              ZERO MEV LEAKAGE
             </h3>
             <div className="flex items-center justify-center gap-4">
               <motion.span
@@ -102,7 +102,7 @@ export function Stats() {
                 className="h-[2px] bg-blue-500/50"
               />
               <p className="text-2xl text-blue-400 font-black uppercase tracking-[0.3em] opacity-80">
-                via ZK-Aggregated Settlement
+                VIA JITO-BUNDLED ZK-SETTLEMENT
               </p>
               <motion.span
                 initial={{ width: 0 }}
@@ -150,22 +150,22 @@ export function Stats() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-32 relative z-10">
             <StatItem
-              label="Active Agents"
-              value="5"
+              label="ACTIVE SWARM NODES"
+              value="50+"
               desc="Specialized Neural Swarm nodes operating 24/7 across multiple chains."
               icon={CpuChipIcon}
               delay={0.1}
             />
             <StatItem
-              label="Protected Txs"
-              value="2000"
+              label="SECURED VOLUME"
+              value="$14M+"
               desc="Cumulative volume secured via ZK-STARK proofs of computational integrity."
               icon={ShieldCheckIcon}
               delay={0.2}
             />
             <StatItem
-              label="Execution Speed"
-              value="400"
+              label="EXECUTION LATENCY"
+              value="< 150ms"
               desc="Ultra-low latency inference on our optimized sub-second validator network."
               icon={BoltIcon}
               delay={0.3}
